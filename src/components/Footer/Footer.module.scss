@@ -1,0 +1,87 @@
+@import '../../assets/scss/colors.scss';
+
+.Footer {
+    width: 100%;
+    height: 40rem;
+
+    .First {
+        height: 60%;
+        background-color: darken($second, 5%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 1rem;
+        background: url('../../assets/svg/newletter.svg') no-repeat;
+        background-position: 50% center;
+        background-size: 300px;
+
+        span {
+            color: $fourth;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .CAT {
+            font-style: italic;
+            font-size: 1rem;
+            color: $fourth;
+        }
+
+        .Newsletter {
+            margin-top: 5rem;
+            box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.37);
+
+            input,
+            button {
+                padding: 1rem;
+                font-family: inherit;
+                border: none;
+            }
+            input {
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                color: $second;
+                background-color: $fourth;
+            }
+            button {
+                border-bottom-right-radius: 10px;
+                border-top-right-radius: 10px;
+                background-color: $second;
+                color: $main;
+            }
+            input::placeholder {
+                color: $second;
+            }
+            
+        }
+    }
+
+    .Second {
+        height: 40%;
+        background-color: darken($second, 7%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: $second;
+
+        div {
+            margin-top: 2rem;
+            img {
+                margin: 0.5rem 2rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 725px) {
+    .Footer {
+        .First {
+            background-position: 5% center;
+        }
+    }
+}

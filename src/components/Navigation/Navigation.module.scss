@@ -1,0 +1,135 @@
+@import '../../assets/scss/colors.scss';
+
+.MainToolbar {
+    width: 100%;
+    height: 5rem;
+
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    z-index: 1000;
+
+    .NavHolder {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        justify-content: space-between;
+
+        height: 5rem;
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                margin-right: 1rem;
+            }
+        }
+
+        h1 {
+            color: $main;
+            margin: 0;
+        }
+
+        .ShopOptions {
+            display: none;
+
+            h4{
+                margin: 0 1rem;
+                cursor: pointer;
+                color: $main;
+            }
+        }
+
+        .UserOptions {
+            display: none;
+            margin-right: 2rem;
+
+            .Icon {
+                width: 20px;
+                height: 20px;
+                margin: 0 0.5rem;
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .Menu {
+            width: 20px;
+            height: 20px;
+            margin-right: 2rem;
+
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            }
+            .Menu:hover {
+                cursor: pointer;
+            }
+            @media screen and (min-width: 725px) {
+            .Menu {
+                display: none;
+            }
+        }
+    }
+
+    .MobileOptions {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .Links {
+            color: $main;
+            margin: 2rem 2rem;
+            font-size: 2rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .Others {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5rem;
+            background-color: $second;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.75;
+        }
+
+        h1 {
+            color: $main;
+        }
+    }
+    @media screen and (min-width: 725px) {
+        .NavHolder {
+            .ShopOptions,
+            .UserOptions {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .Links {
+                    color: $main;
+                    margin: 0 1rem;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,210 @@
+@import '../../../assets/scss/colors.scss';
+
+.Home {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    .mainPhoto {
+        width: 100%;
+        height: 15rem;
+        background: url('../../../assets/photos/main2.jpg') no-repeat;
+        background-position: 50% 80%;
+        box-shadow: 0px 5px 49px 15px rgba(0,0,0,0.37);
+
+        z-index: 5;
+
+        position: relative;
+
+        .Add {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 0.5rem;
+            margin-right: 0.2rem;
+
+            color: $fifth;
+
+            text-align: center;
+
+            h3 {
+                margin: 0 0.5rem;
+            }
+
+            h4 {
+                margin: 0 0.5rem;
+                font-style: italic;
+                color: $fourth;
+            }
+        }
+    }
+
+    .PostHolder{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: darken($second, 3%);
+        padding: 5rem 0;
+
+
+        .updatesTitle {
+            color: $fourth;
+        }
+
+        .Posts {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 50vh;
+            margin: 2rem 0;
+
+            .Loader {
+                width: 50px;
+                height: 50px;
+                border: 5px solid $fourth;
+                border-bottom: none;
+                border-left: none;
+                border-top: none;
+                border-radius: 100%;
+                animation: loader 1s infinite linear;
+            }
+
+            @keyframes loader {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .Post {
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.2);
+                margin: 2rem 2rem;
+                max-width: 30rem;
+                box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.37);
+                filter: grayscale(0.3);
+        
+        
+                .photo {
+                    width: 100%;
+                    height: 30rem;
+                    position: relative;
+                    background-size: cover;
+        
+                    .info {
+                        position: absolute;
+                        padding: 1rem;
+                        color: $fourth;
+                        bottom: 0;
+                        left: 0;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        display: flex;
+                        flex-direction: column;
+                        max-height: 30rem;
+            
+                        h1 {
+                            color: $main;
+                            margin: 1rem 0;
+                        }
+            
+                        span {
+                            margin: 1rem 0;
+                        }   
+
+                        .actions {
+
+                            button {
+                                background-color: transparent;
+                                border: 3px solid $fourth;
+                                padding: 0.5rem;
+                                width: 8rem;
+                                font-family: inherit;
+                                font-weight: bold;
+                                color: $fourth;
+                                border-radius: 7px;
+                            }
+                            .CTA {
+                                background-color: $fourth;
+                                color: $second;
+                                //margin: 0.5rem 0;
+                                margin: 0 0.5rem 0.5rem 0 ;
+                            }
+                        }
+            
+                    }
+                }
+            }
+        }
+
+        .Pagination {
+            span {
+                margin: 0 1rem;
+                color: $fourth;
+                font-size: 1.25rem;
+                cursor: pointer;
+
+                input {
+                    width: 1rem;
+                    text-align: center;
+                    background-color: $second;
+                    padding: 0.5rem;
+                    border: none;
+                    box-shadow: 0px 5px 20px 10px rgba(0,0,0,0.2);
+                    font-family: inherit;
+                    color: $fourth;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 725px) {
+    .Home {
+        .mainPhoto {
+            height: 25rem;
+
+            .Add {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                padding: 1rem;
+                margin-right: 1rem;
+    
+                color: $fifth;
+
+                text-align: center;
+
+                h3 {
+                    margin: 0 0.5rem;
+                }
+
+                h4 {
+                    margin: 0 0.5rem;
+                    font-style: italic;
+                    color: $fourth;
+                }
+            }
+        }
+
+        .PostHolder {
+            .Posts {
+                flex-direction: row;
+            }
+        }
+    }
+}
