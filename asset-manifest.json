@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/ware-shop/static/css/main.4f08b7fc.chunk.css",
+    "main.js": "/ware-shop/static/js/main.6f2d67e5.chunk.js",
+    "main.js.map": "/ware-shop/static/js/main.6f2d67e5.chunk.js.map",
+    "runtime-main.js": "/ware-shop/static/js/runtime-main.9be14dfa.js",
+    "runtime-main.js.map": "/ware-shop/static/js/runtime-main.9be14dfa.js.map",
+    "static/js/2.a993321f.chunk.js": "/ware-shop/static/js/2.a993321f.chunk.js",
+    "static/js/2.a993321f.chunk.js.map": "/ware-shop/static/js/2.a993321f.chunk.js.map",
+    "index.html": "/ware-shop/index.html",
+    "static/css/main.4f08b7fc.chunk.css.map": "/ware-shop/static/css/main.4f08b7fc.chunk.css.map",
+    "static/js/2.a993321f.chunk.js.LICENSE.txt": "/ware-shop/static/js/2.a993321f.chunk.js.LICENSE.txt",
+    "static/media/facebook.43d0b3db.svg": "/ware-shop/static/media/facebook.43d0b3db.svg",
+    "static/media/instagram.ab5dde1a.svg": "/ware-shop/static/media/instagram.ab5dde1a.svg",
+    "static/media/Home.module.scss": "/ware-shop/static/media/main2.bbb469e7.jpg",
+    "static/media/Footer.module.scss": "/ware-shop/static/media/newletter.ed6d982a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9be14dfa.js",
+    "static/js/2.a993321f.chunk.js",
+    "static/css/main.4f08b7fc.chunk.css",
+    "static/js/main.6f2d67e5.chunk.js"
+  ]
+}
