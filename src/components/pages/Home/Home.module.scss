@@ -27,6 +27,7 @@
             bottom: 0;
             padding: 0.5rem;
             margin-right: 0.2rem;
+            opacity: 0.5;
 
             color: $fifth;
 
@@ -62,7 +63,7 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            border: 5px solid $fourth;
+            border: 5px solid lighten($second, 3%);
             border-bottom: none;
             border-left: none;
             border-top: none;
@@ -96,8 +97,9 @@
                 box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.37);
                 filter: grayscale(0.3);
                 margin-top: 5rem;
-                margin-left: 2rem;
-                margin-right: 2rem;
+                margin-bottom: 5rem;
+                margin-left: 1rem;
+                margin-right: 1rem;
                 height: 30rem;
                 overflow: hidden;
         
@@ -173,7 +175,7 @@
             align-items: center;
             color: $fifth;
             border: 1px solid darken($second, 3%);
-            margin-top: 3rem;
+            margin-top: 5rem;
 
             span {
                 width: 25%;

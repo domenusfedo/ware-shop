@@ -22,10 +22,10 @@ const Navigation = () => {
     const shop = useRef();
     const contact = useRef();
 
+    const rest = [home, shop, contact];
+
     useEffect(() => {
         let actual = null;
-        const rest = [home, shop, contact];
-
 
         switch (window.location.hash) {
             case '#/': actual = home;
@@ -36,13 +36,20 @@ const Navigation = () => {
             break;
         }
 
-        //filter
+        const elements = []
+        rest.map(el => {
+            if(el.current.hash !== window.location.hash) {
+                elements.push(el)
+            }
+        });
+
+        gsap.to([elements[0].current, elements[1].current], {
+            opacity: 0.2
+        })
 
         gsap.fromTo([actual.current], {
-            fontWeight: 'normal',
             opacity: 0.2
         }, {
-            fontWeight: 'bold',
             opacity: 1
         })
     })
@@ -55,7 +62,9 @@ const Navigation = () => {
                 height: '5rem',
             },{
                 height: '100vh',
+                duration: 0.1
             })
+            
             menuAnimation.fromTo([nav.current],{
                 backgroundColor: 'rgba(0, 0, 0, 0.2)',
                 duration: 1
@@ -65,15 +74,11 @@ const Navigation = () => {
 
             menuAnimation.fromTo([nav.current.children[1]],{
                 display: 'none',
-            },{
-                display: 'flex',
-            }, '<0.1')
-            menuAnimation.fromTo([nav.current.children[1]],{
                 opacity: 0,
             },{
                 opacity: 1,
-            }, '<')
-
+                display: 'flex',
+            }, '<0.1')
 
             menuAnimation.play()
         } else {
@@ -102,12 +107,9 @@ const Navigation = () => {
                 </div>
 
                 <div className={styles.ShopOptions}>
-                    {/* <NavLink to="/" className={styles.Links} style={window.location.hash === '#/' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={home}>HOME</NavLink>
-                    <NavLink to="/shop" className={styles.Links} style={window.location.hash === '#/shop' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={shop}>SHOP</NavLink>
-                    <NavLink to="/contact" className={styles.Links} style={window.location.hash === '#/contact' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={contact}>CONTACT</NavLink> */}
-                    <NavLink to="/" className={styles.Links} style={window.location.hash !== '#/' ? {opacity: '0.5'} : {}} ref={home}>HOME</NavLink>
-                    <NavLink to="/shop" className={styles.Links} ref={shop} style={window.location.hash !== '#/shop' ? {opacity: '0.5'} : {}}>SHOP</NavLink>
-                    <NavLink to="/contact" className={styles.Links} ref={contact} style={window.location.hash !== '#/contact' ? {opacity: '0.5'} : {}}>CONTACT</NavLink>
+                    <NavLink to="/" className={styles.Links} ref={home}>HOME</NavLink>
+                    <NavLink to="/shop" className={styles.Links} ref={shop} >SHOP</NavLink>
+                    <NavLink to="/contact" className={styles.Links} ref={contact} >CONTACT</NavLink>
                 </div>
 
                 <div className={styles.UserOptions}>

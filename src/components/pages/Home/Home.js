@@ -14,6 +14,7 @@ const Home = () => {
     const [actualPage, setActualPage] = useState(1);
     const [perPage, setPerPage] = useState(2);
     const [pages, setPages] = useState(0);
+    const [chunks, setChunks] = useState([]);
     
     gsap.registerPlugin(ScrollTrigger);
     
@@ -42,16 +43,24 @@ const Home = () => {
     }, [])
 
     useEffect(async () => {
-        //optimize this
-
-        //chunks[x] === 'undefined' ...
         await gsap.to([posts.current], {
             opacity: 0,
             duration: 0.5,
             ease: 'Power0.easeNone'
         })
         setActualData([]);
+        
+        if(chunks[actualPage - 1]) {
+            setActualData(chunks[actualPage - 1]);
 
+            gsap.to([posts.current], {
+                opacity: 1,
+                duration: 1.2,
+                ease: 'Power1.easeInOut'
+    
+            })
+            return;
+        }
 
         const lastPost = actualPage * perPage;
         await db.collection("posts")
@@ -62,6 +71,7 @@ const Home = () => {
         .then(data => {
             const posts = data.docs.map(doc => doc.data());
             setActualData(posts);
+            setChunks(oldChunks => [...oldChunks, posts])
         })
 
         gsap.to([posts.current], {
