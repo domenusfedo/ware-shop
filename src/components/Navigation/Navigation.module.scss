@@ -47,13 +47,21 @@
         }
 
         .UserOptions {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5rem;
             display: none;
+            justify-content: center;
+            align-items: center;
             margin-right: 2rem;
+            background-color: rgba(0, 0, 0, 0.2);
 
             .Icon {
-                width: 20px;
-                height: 20px;
-                margin: 0 0.5rem;
+                width: 40px;
+                height: 40px;
+                margin: 0 2rem;
 
                 svg {
                     width: 100%;
@@ -127,7 +135,18 @@
                     color: $main;
                     margin: 0 1rem;
                     text-decoration: none;
-                    font-weight: bold;
+                }
+            }
+            .UserOptions {
+                width: 10rem;
+                position: static;
+                margin-right: 0;
+                background: none;
+
+                .Icon {
+                    width: 20px;
+                    height: 20px;
+                    margin: 0 0.5rem;
                 }
             }
         }

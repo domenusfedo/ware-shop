@@ -3,10 +3,10 @@
 .Footer {
     width: 100%;
     height: 40rem;
+    margin-top: 5rem;
 
     .First {
         height: 60%;
-        background-color: darken($second, 5%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -16,6 +16,7 @@
         background: url('../../assets/svg/newletter.svg') no-repeat;
         background-position: 50% center;
         background-size: 300px;
+        background-color: darken($second, 5%);
 
         span {
             color: $fourth;
@@ -31,28 +32,33 @@
 
         .Newsletter {
             margin-top: 5rem;
-            box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.37);
+            box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.37);
+            border-radius: 25px;
 
             input,
             button {
-                padding: 1rem;
+                padding: 1rem 1rem;
                 font-family: inherit;
                 border: none;
             }
             input {
-                border-bottom-left-radius: 10px;
-                border-top-left-radius: 10px;
+                width: 7rem;
+                border-bottom-left-radius: 15px;
+                border-top-left-radius: 15px;
                 color: $second;
                 background-color: $fourth;
             }
             button {
-                border-bottom-right-radius: 10px;
-                border-top-right-radius: 10px;
+                font-weight: bold;
+                border-bottom-right-radius: 15px;
+                border-top-right-radius: 15px;
                 background-color: $second;
-                color: $main;
+                color: $fifth;
             }
             input::placeholder {
                 color: $second;
+                font-style: italic;
+                font-size: 0.7rem;
             }
             
         }

@@ -3,23 +3,81 @@ import styles from './Navigation.module.scss';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
+import {gsap} from 'gsap';
+
 const Navigation = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [location, setLocation] = useState(useLocation());
 
-    const nav = useRef();
+    const [menuAnimation] = useState(gsap.timeline({
+        paused: true,
+        onReverseComplete: () => {
+            menuAnimation.clear();
+        }
+    }))
 
-  
+    const nav = useRef();
+    
+    const home = useRef();
+    const shop = useRef();
+    const contact = useRef();
+
+    useEffect(() => {
+        let actual = null;
+        const rest = [home, shop, contact];
+
+
+        switch (window.location.hash) {
+            case '#/': actual = home;
+            break;
+            case '#/shop': actual = shop;
+            break;
+            case '#/contact': actual = contact;
+            break;
+        }
+
+        //filter
+
+        gsap.fromTo([actual.current], {
+            fontWeight: 'normal',
+            opacity: 0.2
+        }, {
+            fontWeight: 'bold',
+            opacity: 1
+        })
+    })
 
     const menuHandler = async () => {
         await setToggleMenu(!toggleMenu);
 
         if(!toggleMenu) {
-            nav.current.style.backgroundColor = 'rgba(0,0,0, 0.9)'
-            nav.current.style.height = '100vh'
+            menuAnimation.fromTo([nav.current],{
+                height: '5rem',
+            },{
+                height: '100vh',
+            })
+            menuAnimation.fromTo([nav.current],{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                duration: 1
+            },{
+                backgroundColor: 'rgba(36,48,64, 0.99)'
+            }, '<')
+
+            menuAnimation.fromTo([nav.current.children[1]],{
+                display: 'none',
+            },{
+                display: 'flex',
+            }, '<0.1')
+            menuAnimation.fromTo([nav.current.children[1]],{
+                opacity: 0,
+            },{
+                opacity: 1,
+            }, '<')
+
+
+            menuAnimation.play()
         } else {
-            nav.current.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
-            nav.current.style.height = '5rem'
+            menuAnimation.reverse()
         }
     }
 
@@ -44,9 +102,12 @@ const Navigation = () => {
                 </div>
 
                 <div className={styles.ShopOptions}>
-                    <NavLink to="/" className={styles.Links} style={window.location.hash === '#/' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}>HOME</NavLink>
-                    <NavLink to="/shop" className={styles.Links} style={window.location.hash === '#/shop' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}>SHOP</NavLink>
-                    <NavLink to="/contact" className={styles.Links} style={window.location.hash === '#/contact' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}}>CONTACT</NavLink>
+                    {/* <NavLink to="/" className={styles.Links} style={window.location.hash === '#/' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={home}>HOME</NavLink>
+                    <NavLink to="/shop" className={styles.Links} style={window.location.hash === '#/shop' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={shop}>SHOP</NavLink>
+                    <NavLink to="/contact" className={styles.Links} style={window.location.hash === '#/contact' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} ref={contact}>CONTACT</NavLink> */}
+                    <NavLink to="/" className={styles.Links} style={window.location.hash !== '#/' ? {opacity: '0.5'} : {}} ref={home}>HOME</NavLink>
+                    <NavLink to="/shop" className={styles.Links} ref={shop} style={window.location.hash !== '#/shop' ? {opacity: '0.5'} : {}}>SHOP</NavLink>
+                    <NavLink to="/contact" className={styles.Links} ref={contact} style={window.location.hash !== '#/contact' ? {opacity: '0.5'} : {}}>CONTACT</NavLink>
                 </div>
 
                 <div className={styles.UserOptions}>
@@ -119,10 +180,6 @@ const Navigation = () => {
                     <NavLink to="/" className={styles.Links} style={window.location.hash === '#/' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} onClick={() => menuHandler()}>HOME</NavLink>
                     <NavLink to="/shop" className={styles.Links} style={window.location.hash === '#/shop' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} onClick={() => menuHandler()}>SHOP</NavLink>
                     <NavLink to="/contact" className={styles.Links} style={window.location.hash === '#/contact' ? {fontWeight: 'bold'} : {fontWeight: 'normal'}} onClick={() => menuHandler()}>CONTACT</NavLink>
-
-                    <div className={styles.Others}>
-                         
-                    </div>
                 </div>}
         </div>
     );

@@ -12,7 +12,7 @@
         height: 15rem;
         background: url('../../../assets/photos/main2.jpg') no-repeat;
         background-position: 50% 80%;
-        box-shadow: 0px 5px 49px 15px rgba(0,0,0,0.37);
+        box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.37);
 
         z-index: 5;
 
@@ -55,7 +55,27 @@
 
 
         .updatesTitle {
-            color: $fourth;
+            color: $fifth;
+        }
+
+        .Loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid $fourth;
+            border-bottom: none;
+            border-left: none;
+            border-top: none;
+            border-radius: 100%;
+            animation: loader 1s infinite linear;
+        }
+
+        @keyframes loader {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .Posts {
@@ -65,35 +85,20 @@
             align-items: center;
             flex-direction: column;
             min-height: 50vh;
-            margin: 2rem 0;
-
-            .Loader {
-                width: 50px;
-                height: 50px;
-                border: 5px solid $fourth;
-                border-bottom: none;
-                border-left: none;
-                border-top: none;
-                border-radius: 100%;
-                animation: loader 1s infinite linear;
-            }
-
-            @keyframes loader {
-                from {
-                    transform: rotate(0deg);
-                }
-                to {
-                    transform: rotate(360deg);
-                }
-            }
+            opacity: 0;
 
             .Post {
                 width: 100%;
                 background-color: rgba(0, 0, 0, 0.2);
-                margin: 2rem 2rem;
+                margin-bottom: 2rem;
                 max-width: 30rem;
-                box-shadow: 0px 5px 30px 10px rgba(0,0,0,0.37);
+                box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.37);
                 filter: grayscale(0.3);
+                margin-top: 5rem;
+                margin-left: 2rem;
+                margin-right: 2rem;
+                height: 30rem;
+                overflow: hidden;
         
         
                 .photo {
@@ -111,7 +116,9 @@
                         background-color: rgba(0, 0, 0, 0.6);
                         display: flex;
                         flex-direction: column;
-                        max-height: 30rem;
+                        justify-content: center;
+                        align-items: center;
+                        height: 65%;
             
                         h1 {
                             color: $main;
@@ -120,9 +127,18 @@
             
                         span {
                             margin: 1rem 0;
-                        }   
+                            text-align: center;
+                            max-width: 75%;
+                            overflow: hidden;
+                            max-height: 10rem;
+                            //border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+                        }
+                        span::-webkit-scrollbar {
+                            display: none;
+                        }  
 
                         .actions {
+                            margin: 2rem 0 ;
 
                             button {
                                 background-color: transparent;
@@ -148,22 +164,77 @@
         }
 
         .Pagination {
+            width: 13rem;
+            height: 3rem;
+            background-color: darken($second, 0%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $fifth;
+            border: 1px solid darken($second, 3%);
+            margin-top: 3rem;
+
             span {
-                margin: 0 1rem;
-                color: $fourth;
-                font-size: 1.25rem;
+                width: 25%;
+                height: 3rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                font-size: 1.3rem;
                 cursor: pointer;
+                font-family: inherit;
+            }
+
+            .pages {
+                cursor: default;
+                width: 50%;
+                font-size: 1rem;
+                font-family: inherit;
+                font-weight: bold;
+                border-right: 2px solid darken($second, 3%);
+                border-left: 2px solid darken($second, 3%);
 
                 input {
-                    width: 1rem;
-                    text-align: center;
-                    background-color: $second;
-                    padding: 0.5rem;
+                    width: 10px;
+                    background: transparent;
                     border: none;
-                    box-shadow: 0px 5px 20px 10px rgba(0,0,0,0.2);
+                    color: inherit;
                     font-family: inherit;
-                    color: $fourth;
+                    font-size: inherit;
+                    font-weight: bold;
                 }
+            }
+        }
+    }
+
+    .PartnersHolder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 5rem;
+        background-color: darken($second, 5%);
+        color: $fifth;
+        padding: 2rem 0;
+
+        display: none;
+
+        h1 {
+            margin: 1rem;
+        }
+
+        ul {
+            padding: 0;
+            margin: 1rem;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+
+            li {
+                margin: 0 2rem;
+                font-style: italic;
             }
         }
     }
