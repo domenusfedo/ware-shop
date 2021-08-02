@@ -59,6 +59,7 @@
         }
 
         .Loader {
+            position: absolute;
             width: 50px;
             height: 50px;
             border: 5px solid $fourth;
@@ -84,7 +85,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            min-height: 50vh;
+            min-height: 70vh;
             opacity: 0;
 
             .Post {

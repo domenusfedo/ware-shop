@@ -39,15 +39,18 @@ const Home = () => {
                 setPages(pages)
             }
           );
-    }, []) //only on the forst visit
+    }, [])
 
     useEffect(async () => {
         //optimize this
+
+        //chunks[x] === 'undefined' ...
         await gsap.to([posts.current], {
             opacity: 0,
             duration: 0.5,
             ease: 'Power0.easeNone'
         })
+        setActualData([]);
 
 
         const lastPost = actualPage * perPage;
@@ -63,7 +66,7 @@ const Home = () => {
 
         gsap.to([posts.current], {
             opacity: 1,
-            duration: 0.2,
+            duration: 1.2,
             ease: 'Power1.easeInOut'
 
         })
@@ -86,6 +89,7 @@ const Home = () => {
             setActualPage(1);
             return;
         }
+        // setActualData([]);
         setActualPage(val)
         if(window.innerWidth <= 724) {
             window.scrollTo({
@@ -115,6 +119,7 @@ const Home = () => {
         }
 
         setActualPage(actual);
+        // setActualData([]);
         if(window.innerWidth < 715) {
             window.scrollTo({
                 top: 200,
