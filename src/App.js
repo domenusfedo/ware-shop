@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer';
 
 import Home from './components/pages/Home/Home';
 import Shop from './components/pages/Shop/Shop';
-import Contact from './components/pages/Contact/Contact';
+import About from './components/pages/About/About';
 
 import asyncComponent from './hoc/asyncComponent';
 
@@ -28,8 +28,8 @@ function App() {
             <Shop />
           </Route>
 
-          <Route path='/contact' exact>
-            <Contact />
+          <Route path='/about' exact>
+            <About />
           </Route>
         </Switch>
       <Footer/>

@@ -175,14 +175,20 @@ const Home = () => {
             </div>
 
             <div className={styles.PostHolder}>
-                <h1 className={styles.updatesTitle}>latest updates</h1>
+                <div className={styles.updatesTitle}>
+                    <div></div>
+                    <h1>
+                    latest updates
+                    </h1>
+                    <div></div>
+                </div>
                 {actualData.length === 0 && <div className={styles.Loader}></div> }
                 <div className={styles.Posts} ref={posts}>
                     {actualData.length !== 0
                     && actualData.map(post => (
-                        <section className={styles.Post} key={post.id} onBlur={(e) => hidePopped(e)}>
+                        <section className={styles.Post} key={post.id}>
                             <div className={styles.photo} style={{backgroundImage: `url(${post.photoUrl})`}} alt='loading...'>
-                            <div className={styles.info}>
+                            <div className={styles.info} onBlur={(e) => hidePopped(e)}>
                                 <h1>{post.title}</h1>
                                 <span>{post.longDescription}</span>
                                 <span style={{display: 'none'}}>{post.longDescription}</span>
@@ -206,15 +212,12 @@ const Home = () => {
             </div>
 
             <div className={styles.PartnersHolder}>
-                <h1>partners</h1>
                 <ul>
                     <li>NOVA</li>
                     <li>MEPAL</li>
                     <li>BATUKARU</li>
                 </ul>
             </div>
-
-
         </div>
     );
 };

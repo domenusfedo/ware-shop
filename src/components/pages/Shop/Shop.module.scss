@@ -1,4 +1,50 @@
+@import '../../../assets/scss/colors.scss';
+
 .Shop {
-    height: 100vh;
-    
+    min-height: 100vh;
+    padding-top: 5rem;
+    background-color: $main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .Filters {
+        position: fixed;
+        color: $second;
+        text-align: center;
+        width: 100%;
+        margin: 0;
+        padding: 2rem 0;
+        bottom: 0;
+        left: 0;
+        background-color: darken($second, 2%);
+        color: $main;
+    }
+
+    .ProductsHolder {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+        padding: 5rem 0;
+
+        .Product {
+            height: 30rem;
+            width: 100%;
+            max-width: 25rem;
+            background-color: darken($main, 2%);
+
+            .First {
+                height: 60%;
+                background-color: red;
+            }
+
+            .Second {
+                height: 40%;
+            }
+        }
+    }
 }

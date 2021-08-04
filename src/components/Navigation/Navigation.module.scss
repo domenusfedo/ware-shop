@@ -42,7 +42,7 @@
             h4{
                 margin: 0 1rem;
                 cursor: pointer;
-                color: $main;
+                font-weight: bold;
             }
         }
 
@@ -99,11 +99,10 @@
         flex-direction: column;
 
         .Links {
-            color: $main;
             margin: 2rem 2rem;
             font-size: 2rem;
             text-decoration: none;
-            font-weight: bold;
+            color: $main;
         }
 
         .Others {
@@ -135,6 +134,7 @@
                     color: $main;
                     margin: 0 1rem;
                     text-decoration: none;
+                    font-weight: bold;
                 }
             }
             .UserOptions {

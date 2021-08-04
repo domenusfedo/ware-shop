@@ -21,6 +21,7 @@ const Footer = () => {
                 <span>Copyright &copy 2021 All right reserved</span>
                 <span>@domenusfedo</span>
                 <div>
+                <div className={styles.Line}></div>
                 <img src={fbIcon}></img>
                 <img src={instagramIcon}></img>
                 </div>

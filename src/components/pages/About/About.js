@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from './Contact.module.scss';
+import styles from './About.module.scss';
 
-const Contact = () => {
+const About = () => {
     return (
         <div className={styles.Contact}>
             SSS
@@ -10,4 +10,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default About;
