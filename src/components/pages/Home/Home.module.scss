@@ -65,11 +65,12 @@
             align-items: center;
 
             div {
-                width: 20%;
+                width: 10%;
                 border-bottom: 3px solid darken($second, 5%);   
             }
 
             h1 {
+                width: 80%;
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
@@ -181,52 +182,6 @@
                         }
             
                     }
-                }
-            }
-        }
-
-        .Pagination {
-            width: 13rem;
-            height: 3rem;
-            background-color: darken($second, 0%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $fifth;
-            border: 1px solid darken($second, 3%);
-            border-radius: 10px;
-            margin-top: 5rem;
-
-            span {
-                width: 25%;
-                height: 3rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: bold;
-                font-size: 1.3rem;
-                cursor: pointer;
-                font-family: inherit;
-            }
-
-
-            .pages {
-                cursor: default;
-                width: 50%;
-                font-size: 1rem;
-                font-family: inherit;
-                font-weight: bold;
-                border-right: 2px solid darken($second, 3%);
-                border-left: 2px solid darken($second, 3%);
-
-                input {
-                    width: 10px;
-                    background: transparent;
-                    border: none;
-                    color: inherit;
-                    font-family: inherit;
-                    font-size: inherit;
-                    font-weight: bold;
                 }
             }
         }

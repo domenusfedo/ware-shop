@@ -7,13 +7,13 @@ import Home from './components/pages/Home/Home';
 import Shop from './components/pages/Shop/Shop';
 import About from './components/pages/About/About';
 
-import asyncComponent from './hoc/asyncComponent';
+//import asyncComponent from './hoc/asyncComponent';
 
 import {Route, Switch} from 'react-router-dom';
 
-const asyncComp = asyncComponent(url => {
-  return import(url)
-});
+// const asyncComp = asyncComponent(url => {
+//   return import(url)
+// });
 
 function App() {
   return (

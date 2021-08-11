@@ -1,22 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import styles from './Home.module.scss';
-
-import {db} from '../../../firebase';
-
 import {gsap} from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger'
 
-import { useRef } from 'react';
+import usePagination from '../../../hooks/usePagination';
+
+import Pagination from '../../UI/Pagination/Pagination';
 
 const Home = () => {
     const [actualData, setActualData] = useState([]);
     const [actualPage, setActualPage] = useState(1);
-    const [perPage, setPerPage] = useState(2);
+    const [perPage] = useState(2);
     const [pages, setPages] = useState(0);
     const [chunks, setChunks] = useState([]);
-    
-    gsap.registerPlugin(ScrollTrigger);
+
+    const { amount, fetch, setCurrentPage, updateActualPage} = usePagination();
     
     const [paginationAnimation] = useState(gsap.timeline({
         paused: true,
@@ -30,112 +28,58 @@ const Home = () => {
     const posts = useRef();
     const mainPhoto = useRef();
 
-    const sign1 = '>';
-    const sign2 = '<';
+    useEffect(() => {
+        amount('posts', perPage).then(data => {
+            setPages(data)
+        });
+    }, [amount, perPage])
 
     useEffect(() => {
-        db.collection("posts").get().then(
-            (snapshot) => {
-                const pages = snapshot.docs.length / perPage;
-                setPages(pages)
-            }
-          );
-    }, [])
-
-    useEffect(async () => {
-        await gsap.to([posts.current], {
-            opacity: 0,
-            duration: 0.5,
-            ease: 'Power0.easeNone'
-        })
-        setActualData([]);
+        const fetchFunc =  async() => {
+            await gsap.to([posts.current], {
+                opacity: 0,
+                duration: 0.5,
+                ease: 'Power0.easeNone'
+            })
+            setActualData([]);
+    
+            
+            if(chunks[actualPage - 1]) {
+                setActualData(chunks[actualPage - 1]);
+    
+                gsap.to([posts.current], {
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: 'Power1.easeInOut'
         
-        if(chunks[actualPage - 1]) {
-            setActualData(chunks[actualPage - 1]);
-
+                })
+                return;
+            }
+    
+            await fetch('posts', actualPage, perPage).then(data => {
+                setActualData(data);
+                setChunks(oldChunks => [...oldChunks, data])
+            });
+    
             gsap.to([posts.current], {
                 opacity: 1,
                 duration: 1.2,
                 ease: 'Power1.easeInOut'
     
             })
-            return;
         }
+        fetchFunc();
+    }, [actualPage, perPage, setActualData]); //fires only on page changes
 
-        const lastPost = actualPage * perPage;
-        await db.collection("posts")
-        .orderBy("id", "asc")
-        .startAt(lastPost - 1)
-        .limit(perPage)
-        .get()
-        .then(data => {
-            const posts = data.docs.map(doc => doc.data());
-            setActualData(posts);
-            setChunks(oldChunks => [...oldChunks, posts])
-        })
-
-        gsap.to([posts.current], {
-            opacity: 1,
-            duration: 1.2,
-            ease: 'Power1.easeInOut'
-
-        })
-    }, [actualPage, perPage]); //fires only on page changes
-
-    // ScrollTrigger.create({
-    //     trigger: mainPhoto,
-    //     start: 'top bottom',
-    //     markers: true,
-    // })
-
-
-    const setPage = (element) => {
-        const val = +element.target.value;
-        if(val > pages) {
-            setActualPage(pages);
-            return;
-        }
-        if(val < 1) {
-            setActualPage(1);
-            return;
-        }
-        // setActualData([]);
-        setActualPage(val)
-        if(window.innerWidth <= 724) {
-            window.scrollTo({
-                top: 200,
-                behavior: 'smooth'
-            })
-        }
+    const setPage = (action) => {
+        const actual = setCurrentPage(action, actualPage, pages);
+        setActualPage(actual);
     }
 
-    const selectAll = (e) => {
-        e.target.select();
-    }
 
     const updatePage = (action) => {
-        let actual = actualPage;
-        
-        switch(action) {
-            case 'increment': actual += 1;
-            break;
-            case 'decrement': actual -= 1;
-            break;
-            default: return false
-        }
-
-        if(actual > pages || actual < 1) {
-            return;
-        }
-
+        const actual = updateActualPage(action, actualPage, pages);
         setActualPage(actual);
-        // setActualData([]);
-        if(window.innerWidth < 715) {
-            window.scrollTo({
-                top: 200,
-                behavior: 'smooth'
-            })
-        }
     }
 
     const hidePopped = (post) => {
@@ -202,13 +146,9 @@ const Home = () => {
                     ))
                     }
                 </div>
-                <div className={styles.Pagination}>
-                    <span style={actualPage === 1 ? {opacity: '0.5'} : {opacity: '1'}} onClick={() => updatePage('decrement')}>{sign2}</span>
-                    <span className={styles.pages}>
-                        <input value={actualPage} onChange={(e) => setPage(e)} onFocus={(e) => selectAll(e)}></input> of {pages}
-                    </span>
-                    <span style={actualPage === pages ? {opacity: '0.5'} : {opacity: '1'}} onClick={() => updatePage('increment')}>{sign1}</span>
-                </div>
+                
+                {<Pagination actualPage={actualPage} pages={pages} updatePage={(e) => updatePage(e)} setPage={(action) => setPage(action)}/>}
+                
             </div>
 
             <div className={styles.PartnersHolder}>

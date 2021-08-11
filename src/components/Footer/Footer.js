@@ -22,8 +22,8 @@ const Footer = () => {
                 <span>@domenusfedo</span>
                 <div>
                 <div className={styles.Line}></div>
-                <img src={fbIcon}></img>
-                <img src={instagramIcon}></img>
+                <img src={fbIcon} alt='fb'></img>
+                <img src={instagramIcon} alt='ig'></img>
                 </div>
             </div>
         </div>

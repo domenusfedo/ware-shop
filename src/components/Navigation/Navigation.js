@@ -7,7 +7,7 @@ import {gsap} from 'gsap';
 
 const Navigation = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
-    const [location, setLocation] = useState(useLocation());
+    // const [location, setLocation] = useState(useLocation());
 
     const [menuAnimation] = useState(gsap.timeline({
         paused: true,
@@ -31,6 +31,7 @@ const Navigation = () => {
     const about = useRef();
 
     const rest = [home, shop, about];
+    useLocation()
 
     useEffect(() => {
         let actual = null;
@@ -52,6 +53,11 @@ const Navigation = () => {
                 color= '#65768C';
             }
             break;
+            default: return;
+        }
+
+        if(toggleMenu) {
+            color= '#65768C';
         }
 
         const elements = []
@@ -59,6 +65,7 @@ const Navigation = () => {
             if(el.current.hash !== window.location.hash) {
                 elements.push(el)
             }
+            return 1;
         });
 
         gsap.to([nav.current.children[0].children[0].children[1], logoSVG.current, menuSVG.current, searchSVG.current, cartSVG.current, cart2SVG.current, accSVG.current], {
@@ -67,7 +74,7 @@ const Navigation = () => {
         }) 
 
         gsap.to([elements[0].current, elements[1].current], {
-            opacity: 0.2,
+            opacity: 0.5,
             color: color
         })
 
