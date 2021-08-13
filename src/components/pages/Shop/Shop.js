@@ -16,85 +16,97 @@ const Shop = () => {
     const [pages, setPages] = useState(2);
     const [toggleFilters, setToggleFilters] = useState(false);
 
-    const [actualFilters, setActualFilters] = useState();
+    const [actualFilters, setActualFilters] = useState({
+        collections: ['coloren', 'golden', 'classen', 'wooden'],
+        price: {
+            from: null,
+            to: null
+        }
+    });
+
+    const [shouldUpdate, setShouldUpdate] = useState(false);
 
     const [lastId, setLastId] = useState(0);
 
-    const { amount, fetch, setCurrentPage, updateActualPage, filter} = usePagination();
+    const { amount, setCurrentPage, updateActualPage, filter} = usePagination();
 
     const products = useRef();
+    const filters = useRef();
 
-    useEffect(() => {
-        amount('products', perPage).then(data => {
-            setPages(data)
-        });
-    }, [amount, perPage])
+    const fetchFunc =  async() => {
+        await gsap.to([products.current], {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'Power0.easeNone'
+        })
+        setActualData([]);
 
-    useEffect(() => {
-        const fetchFunc =  async() => {
-            await gsap.to([products.current], {
-                opacity: 0,
-                duration: 0.5,
-                ease: 'Power0.easeNone'
-            })
-            setActualData([]);
+        if(chunks[actualPage - 1]) {
+            setActualData(chunks[actualPage - 1]);
 
-            if(chunks[actualPage - 1]) {
-                setActualData(chunks[actualPage - 1]);
-    
-                gsap.to([products.current], {
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: 'Power1.easeInOut'
-        
-                })
-                return;
-            }
-    
-            await fetch('products', actualPage, perPage).then(data => {
-                setActualData(data);
-                setChunks(oldChunks => [...oldChunks, data])
-            });
-    
             gsap.to([products.current], {
                 opacity: 1,
                 duration: 1.2,
                 ease: 'Power1.easeInOut'
     
             })
-        } 
-        fetchFunc();
-    }, [actualPage, perPage, setActualData])
+            return;
+        }
 
-    const setPage = (action) => {
-        const actual = setCurrentPage(action, actualPage, pages);
-        setActualPage(actual);
-    }
-
-
-    const updatePage = (action) => {
-        const actual = updateActualPage(action, actualPage, pages);
-        setActualPage(actual);
-    }
-
-    const applyFilters = (data) => {
-        setActualData([]);
-        setChunks([]);
-
-
-        filter('products', data, perPage, lastId).then(data => {
-            console.log('Filtered data:', data)
+        await filter('products', actualFilters, perPage, lastId, actualPage).then(data => {
             setActualData(data.data);
             setChunks(oldChunks => [...oldChunks, data.data])
             setLastId(data.lastId)
+            setPages(data.pages)
         })
+
+        gsap.to([products.current], {
+            opacity: 1,
+            duration: 1.2,
+            ease: 'Power1.easeInOut'
+        })
+    } 
+
+    useEffect(() => {
+        fetchFunc();
+    }, [shouldUpdate, actualPage])
+
+    const setPage = async (e) => {
+        const old = actualPage;
+        const actual = await setCurrentPage(e, pages);
+        if(old !== actual) {
+            setActualPage(actual);
+            setShouldUpdate(!shouldUpdate)
+        }
+    }
+
+
+    const updatePage = async (action) => {
+        const old = actualPage;
+        const actual = await updateActualPage(action, actualPage, pages);
+        if(old !== actual) {
+            setActualPage(actual);
+            setShouldUpdate(!shouldUpdate)
+        }
+    }
+
+    const clearFunc = (data) => {
+        setActualFilters(data)
+        setActualData([]);
+        setChunks([]);
+        setLastId(0)
+        setActualPage(1)
+    }
+
+    const applyFilters = (data) => {
+        clearFunc(data);
+        setShouldUpdate(!shouldUpdate)
     }
 
     return (
         <div className={styles.Shop}>
-                <h1 className={styles.Filters}>
-                    <Filters open={toggleFilters} toggleFilters={() => setToggleFilters(!toggleFilters)} applyFilters={(data) => applyFilters(data)}/> 
-                    {/* provide function that will clear chunks  */}
+                <h1 className={styles.Filters} ref={filters}>
+                    <Filters open={toggleFilters} actualFilters={actualFilters} toggleFilters={() => setToggleFilters(!toggleFilters)} applyFilters={(data) => applyFilters(data)}/> 
                 </h1>
 
                 <div className={styles.Right}>
@@ -117,7 +129,7 @@ const Shop = () => {
                         ))}
                     </div>
                     <div style={{paddingBottom: '5rem'}}>
-                    {<Pagination actualPage={actualPage} pages={pages} updatePage={(e) => updatePage(e)} setPage={(action) => setPage(action)}/>}
+                    {<Pagination actualPage={actualPage} pages={pages} updatePage={(e) => updatePage(e)} setPage={(e) => setPage(e)}/>}
                     </div>
             </div>
         </div>

@@ -1,9 +1,6 @@
-import {useState} from 'react';
 import {db} from '../firebase'
 
 const usePagination = () => {
-    const [lastId, setLastId] = useState(0);
-
     const setCurrentPage = (element, pages) => {
         const val = +element.target.value;
         if(val > pages) {
@@ -49,13 +46,68 @@ const usePagination = () => {
         return actual;
     }
 
-    const amount = async(url, perPage, additional) => {
+    const amount = async(url, perPage, filter) => {
         let pages;
-        await db.collection(url).get().then(
+
+        let query = await db.collection(url);
+        if(filter) {query = query.where('collection', 'in', filter.collections);}
+        
+        
+        await query.get().then(
             (snapshot) => {
                 pages = snapshot.docs.length / perPage;
             });
-        return pages;
+        return Math.round(pages);
+    }
+
+    const paginateGood = (array, page_size, page_number) => {
+        return array.slice(page_number * page_size, page_number * page_size + page_size);
+    };
+
+
+    const filter = async (url, filter, perPage, lastId, currPage) => {
+        let query = await db.collection(url);
+
+        if(filter.price.from === null) {
+            filter.price.from = 0
+        }
+        if(filter.price.to === null) {
+            filter.price.to = 1000
+        }
+
+        query = query.orderBy("id", "asc");
+        query = query.where('collection', 'in', filter.collections);
+        query = query.startAfter(lastId);
+        
+        let last;
+
+        let items = 0;
+        
+        const modifiedData = await query.get()
+        .then(data => data.docs.map(doc => {
+            let tempData = {};
+            if(+doc.data().price >= +filter.price.from && +doc.data().price <= +filter.price.to) {
+                last = doc.data().id;
+                tempData = doc.data();
+                items++;
+            }
+            return tempData
+
+        }))
+        .then(data => {
+            //if no data assign custom item to data
+            const filtered = data.filter(value => Object.keys(value).length !== 0);
+            const paginatedArray = paginateGood(filtered, perPage, (currPage - 1));
+
+            const filteredData = {
+                data: paginatedArray,
+                lastId: last,
+                pages: Math.round(items / perPage)
+            }
+            return filteredData;
+        })
+
+        return modifiedData
     }
 
     const fetch = async (url, actualPage, perPage) => {
@@ -73,40 +125,6 @@ const usePagination = () => {
         return partial
     }
 
-    const filter = async (url, filter, perPage, actualPage) => {
-        let query = await db.collection(url);
-
-        if(filter.collections.length !== 0) {
-            query = query.where('collection', 'in', filter.collections);
-        } else {
-            query = query.where('collection', 'in', ['coloren', 'classen', 'golden', 'wooden']);
-        }
-
-        query = query.orderBy("id", "asc");
-        query = query.startAfter(lastId);
-        query = query.limit(perPage);
-        
-        let last;
-        
-        const test = await query.get()
-        .then(data => data.docs.map(doc => {
-            console.log(doc.data().id);
-            last = doc.data().id;
-            return doc.data();
-        }))
-        .then(data => {
-            setLastId(lastId);
-            const filteredData = {
-                data: data,
-                lastId: last
-            }
-            console.log('IDIDID', lastId)
-            return filteredData;
-        })
-
-        return test
-    }
-
     return {
         amount: amount,
         fetch: fetch,
@@ -117,3 +135,51 @@ const usePagination = () => {
 }
 
 export default usePagination;
+
+
+// let query = await db.collection(url);
+
+// if(filter.price.from === null) {
+//     filter.price.from = 0
+// }
+// if(filter.price.to === null) {
+//     filter.price.to = 1000
+// }
+
+// //query = query.orderBy("price", "asc");
+
+// query = query.orderBy("id", "asc").startAfter(lastId).where('collection', 'in', filter.collections)
+
+// // price = orderBy("price", "asc").where('price', '>=', filter.price.from);
+
+// //query = query.orderBy("price", "asc").where('price', '>=', filter.price.from);
+
+// query = query.limit(perPage)
+
+// // query = query.orderBy("price", "asc");
+// // query = query.orderBy("id", "asc");
+// // query = query.startAfter(lastId);
+
+// // query = query.where('collection', 'in', filter.collections).where('price', '>=', filter.price.from).where('price', '<=', filter.price.to)
+// // //query = query.where('price', '>=', filter.price.from)
+
+// // query = query.limit(perPage)
+
+// let last;
+
+// const test = await query.get()
+// .then(data => data.docs.map(doc => {
+//     last = doc.data().id;
+//     return doc.data()
+// }))
+// .then(data => {
+//     //if no data assign custom item to data
+//     console.log(data)
+//     const filteredData = {
+//         data: data,
+//         lastId: last,
+//     }
+//     return filteredData;
+// })
+
+// return test

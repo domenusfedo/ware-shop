@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 import styles from './Filters.module.scss';
 
@@ -6,10 +6,10 @@ import {gsap} from 'gsap';
 
 
 const Filters = props => {
-    const collections = ['coloren', 'classen', 'golden', 'wooden'];
+    const collections = ['coloren', 'golden', 'classen', 'wooden'];
 
     const [filtersTerm, setFiltersTerm] = useState({
-        collections: ['coloren', 'classen', 'golden', 'wooden'],
+        collections: ['coloren', 'golden', 'classen', 'wooden'],
         price: {
             from: null,
             to: null
@@ -59,6 +59,10 @@ const Filters = props => {
         filtersTerm.price[e.target.id] = e.target.value;
     }
 
+    useEffect(() => {
+        setFiltersTerm(props.actualFilters)
+    }, [props.open])
+
     return (
         <div className={styles.Filters} ref={filters}>
             <h3 onClick={() => {!filtersAnimation.isActive() && props.toggleFilters()}}>{props.open ? '-filters' : '+filters'}</h3>
@@ -68,7 +72,7 @@ const Filters = props => {
                                 <h4>Collections</h4>
                                 <div className={styles.Holder}>
                                     {collections.map(e => (
-                                        <button key={e} id={e} onClick={(e) => toggleCollection(e)}>{e}</button>
+                                        <button key={e} id={e} onClick={(e) => toggleCollection(e)} style={filtersTerm.collections.includes(e) ? {color: '#C1CBD9', backgroundColor: '#243040'} : {color: '#243040', backgroundColor: 'transparent'}}>{e}</button>
                                     ))}
                                 </div>
                         </div>
@@ -85,7 +89,7 @@ const Filters = props => {
                             </div>
                         </div>
                         <div className={styles.ButtonHolder}>
-                            <button className={styles.Button} onClick={() =>  props.applyFilters(filtersTerm)}>apply</button>
+                            <button className={styles.Button} onClick={() => {props.applyFilters(filtersTerm); props.toggleFilters()}}>apply</button>
                         </div>
                     </div>}
             </div>
@@ -94,35 +98,3 @@ const Filters = props => {
 };
 
 export default Filters;
-
-{/* <div className={styles.Options} ref={filters}>
-                    <div>
-                        <div className={styles.Elements}>
-                            <h4 onClick={() => setShowCollections(!showCollections)}>Collections</h4>
-                            <div className={styles.Collections}>
-                                {showCollections && <div className={styles.Holder}>
-                                    <button>coloren</button>
-                                    <button>classen</button>
-                                    <button>golden</button>
-                                    <button active>wooden</button>
-                                </div>}
-                            </div>
-                        </div>
-                        <div className={styles.Elements}>
-                            <h4 onClick={() => setShowPrice(!showPrice)}>Price</h4>
-                            {showPrice && <div className={styles.Holder2}>
-                                <div>
-                                    <input placeholder='from'></input>
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    <input placeholder='to'></input>
-                                </div>
-                            </div>}
-                        </div>    
-                    </div>
-                    <div className={styles.ButtonHolder}>
-                        <button className={styles.Button} onClick={() =>  props.toggleFilters()}>apply</button>
-                        <button className={styles.Button}>clear all</button>
-                    </div>
-                </div> */}
