@@ -76,8 +76,10 @@ const usePagination = () => {
         }
 
         query = query.orderBy("id", "asc");
-        query = query.where('collection', 'in', filter.collections);
-        query = query.startAfter(lastId);
+        if(filter.collections.length > 0) {
+            query = query.where('collection', 'in', filter.collections);
+        } 
+            
         
         let last;
 
@@ -87,7 +89,6 @@ const usePagination = () => {
         .then(data => data.docs.map(doc => {
             let tempData = {};
             if(+doc.data().price >= +filter.price.from && +doc.data().price <= +filter.price.to) {
-                last = doc.data().id;
                 tempData = doc.data();
                 items++;
             }
@@ -95,9 +96,20 @@ const usePagination = () => {
 
         }))
         .then(data => {
-            //if no data assign custom item to data
-            const filtered = data.filter(value => Object.keys(value).length !== 0);
-            const paginatedArray = paginateGood(filtered, perPage, (currPage - 1));
+            let paginatedArray;
+            if(data) {
+                const filtered = data.filter(value => Object.keys(value).length !== 0);
+                paginatedArray = paginateGood(filtered, perPage, (currPage - 1));
+            } else {
+                paginatedArray = {
+                    id: 0,
+                    desc: 'No products found',
+                    imageUrl: '',
+                    price: null,
+                    title: 'No',
+                    collection: null
+                }
+            }
 
             const filteredData = {
                 data: paginatedArray,
