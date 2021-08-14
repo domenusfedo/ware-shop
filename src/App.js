@@ -24,7 +24,7 @@ function App() {
             <Home />
           </Route>
 
-          <Route path='/shop' exact>
+          <Route path='/shop/:coll?'>
             <Shop />
           </Route>
 

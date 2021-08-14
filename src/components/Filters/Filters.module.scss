@@ -107,7 +107,12 @@
                 border: 5px solid $second;
                 border-radius: 25px;
                 width: 10rem;
-                padding: 0.5rem;
+                padding: 0.25rem;
+            }
+            .Button:last-child {
+                border: none;
+                margin-top: 0.5rem;
+                color: lighten($second, 5%);
             }
         }
         }

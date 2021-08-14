@@ -37,7 +37,9 @@ const Navigation = () => {
         let actual = null;
         let color = null;
 
-        switch (window.location.hash) {
+        const x = window.location.hash.split("/", 2).join("/");
+
+        switch (x) {
             case '#/': {
                 actual = home;
                 color= '#65768C';
@@ -62,7 +64,7 @@ const Navigation = () => {
 
         const elements = []
         rest.map(el => {
-            if(el.current.hash !== window.location.hash) {
+            if(el.current.hash !== x) {
                 elements.push(el)
             }
             return 1;

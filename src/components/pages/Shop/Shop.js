@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { useParams } from "react-router";
 
 import styles from './Shop.module.scss';
 import {gsap} from 'gsap';
@@ -21,14 +22,13 @@ const Shop = () => {
         price: {
             from: null,
             to: null
-        }
+        },
+        sorting: 'asc'
     });
 
     const [shouldUpdate, setShouldUpdate] = useState(false);
 
     const [lastId, setLastId] = useState(0);
-
-    const [asc, setAsc] = useState(true);
 
     const { setCurrentPage, updateActualPage, filter} = usePagination();
 
@@ -73,6 +73,23 @@ const Shop = () => {
         fetchFunc();
     }, [shouldUpdate, actualPage])
 
+    const {coll} = useParams();
+
+    useEffect(() => {
+        console.log(coll)
+        if(coll) {
+            setActualFilters({
+                collections: [coll],
+                price: {
+                    from: null,
+                    to: null
+                },
+                sorting: 'asc'
+            })
+        }
+        setShouldUpdate(!shouldUpdate)
+    }, [])
+
     const setPage = async (e) => {
         const old = actualPage;
         const actual = await setCurrentPage(e, pages);
@@ -81,7 +98,6 @@ const Shop = () => {
             setShouldUpdate(!shouldUpdate)
         }
     }
-
 
     const updatePage = async (action) => {
         const old = actualPage;
@@ -102,21 +118,14 @@ const Shop = () => {
 
     const applyFilters = (data) => {
         clearFunc(data);
-        setShouldUpdate(!shouldUpdate)
+        setShouldUpdate(!shouldUpdate);
     }
-
-    const toggleOrder = () => {
-        setAsc(!asc);
-        setShouldUpdate(!shouldUpdate)
-    } 
 
     return (
         <div className={styles.Shop}>
                 <h1 className={styles.Filters} ref={filters}>
                     <Filters open={toggleFilters} actualFilters={actualFilters} toggleFilters={() => setToggleFilters(!toggleFilters)} applyFilters={(data) => applyFilters(data)}/> 
                 </h1>
-
-                <span onClick={() => toggleOrder()}>{asc ? 'Z-A' : 'A-Z'}</span>
 
                 <div className={styles.Right}>
                     <div className={styles.ProductsHolder} ref={products}>

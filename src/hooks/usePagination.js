@@ -1,11 +1,9 @@
 import {useState} from 'react';
+import Filters from '../components/Filters/Filters';
 
 import {db} from '../firebase'
 
 const usePagination = () => {
-
-    const [arrayRaw, setArrayRaw] = useState([]);
-
     const setCurrentPage = (element, pages) => {
         const val = +element.target.value;
         if(val > pages) {
@@ -69,9 +67,11 @@ const usePagination = () => {
         return array.slice(page_number * page_size, page_number * page_size + page_size);
     };
 
-
-    const filter = async (url, filter, perPage, lastId, currPage) => {
-        console.log('FETCHING')
+    //THIS WILL BE ON THE SERVER
+    //ON REAL CLIENT APP WILL ONLY ASKED FOR NEEDED DATA SO IT WILL BE MORE EFFICEINT
+    //I COULD MAKE ONE ARRAY OF ALL ITEMS, PASS IT TO THE CLIENT AND PAGINATED PASSED ARRAY SO APP WOULDN'T MAKE unnecessary REQUEST
+    //I WILL CONNECT THIS APP WITH OWN NODE.JS SERVER BUT FOR NOW I AM USING FIREBASE
+    const filter = async (url, filter, perPage, isAsc, currPage) => {
         let query = await db.collection(url);
 
         if(filter.price.from === null) {
@@ -102,9 +102,11 @@ const usePagination = () => {
 
         }))
         .then(data => {
-            console.log(arrayRaw)
-            setArrayRaw(data);
             data.sort((a, b) =>  parseFloat(a.price) - parseFloat(b.price));
+            if(filter.sorting === 'desc') {
+                data.reverse();
+            }
+
             let paginatedArray;
             if(data) {
                 const filtered = data.filter(value => Object.keys(value).length !== 0);

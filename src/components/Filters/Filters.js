@@ -13,7 +13,8 @@ const Filters = props => {
         price: {
             from: null,
             to: null
-        }
+        },
+        sorting: 'asc'
     });
 
     const [filtersAnimation] = useState(gsap.timeline({
@@ -23,15 +24,17 @@ const Filters = props => {
         }
     }))
 
+    const info = 'A-Z';
+
     const options = useRef();
     const filters = useRef();
 
     if(props.open) {
         filtersAnimation.fromTo([options.current], {
-            height: '0rem',
+            height: '0',
         }, {
             opacity: 1,
-            height: '40rem',
+            height: '50rem',
         })
         filtersAnimation.play();
     } else {
@@ -57,6 +60,18 @@ const Filters = props => {
 
     const addPrice = (e) => {
         filtersTerm.price[e.target.id] = e.target.value;
+    }
+
+    const sorting = (e) => {
+        if(e.target.innerText === 'A-Z') {
+            e.target.id = 'desc';
+            e.target.innerText = 'Z-A';
+            filtersTerm.sorting = e.target.id;
+        } else {
+            e.target.innerText = 'A-Z';
+            e.target.id = 'asc';
+            filtersTerm.sorting = e.target.id;
+        }
     }
 
     useEffect(() => {
@@ -88,8 +103,21 @@ const Filters = props => {
                                 </div>
                             </div>
                         </div>
+                        <div className={styles.Elements}>
+                            <h4>Sorting</h4>
+                            <span id='asc' onClick={(e) => sorting(e)}>A-Z</span>
+                        </div>
                         <div className={styles.ButtonHolder}>
                             <button className={styles.Button} onClick={() => {props.applyFilters(filtersTerm); props.toggleFilters()}}>apply</button>
+                            <button className={styles.Button} onClick={() => {
+                                props.applyFilters({
+                                    collections: ['coloren', 'golden', 'classen', 'wooden'],
+                                    price: {
+                                        from: null,
+                                        to: null
+                                    },
+                                    sorting: 'asc'
+                                }); props.toggleFilters()}}>clear all</button>
                         </div>
                     </div>}
             </div>
