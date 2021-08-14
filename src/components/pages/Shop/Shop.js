@@ -28,7 +28,9 @@ const Shop = () => {
 
     const [lastId, setLastId] = useState(0);
 
-    const { amount, setCurrentPage, updateActualPage, filter} = usePagination();
+    const [asc, setAsc] = useState(true);
+
+    const { setCurrentPage, updateActualPage, filter} = usePagination();
 
     const products = useRef();
     const filters = useRef();
@@ -103,11 +105,18 @@ const Shop = () => {
         setShouldUpdate(!shouldUpdate)
     }
 
+    const toggleOrder = () => {
+        setAsc(!asc);
+        setShouldUpdate(!shouldUpdate)
+    } 
+
     return (
         <div className={styles.Shop}>
                 <h1 className={styles.Filters} ref={filters}>
                     <Filters open={toggleFilters} actualFilters={actualFilters} toggleFilters={() => setToggleFilters(!toggleFilters)} applyFilters={(data) => applyFilters(data)}/> 
                 </h1>
+
+                <span onClick={() => toggleOrder()}>{asc ? 'Z-A' : 'A-Z'}</span>
 
                 <div className={styles.Right}>
                     <div className={styles.ProductsHolder} ref={products}>

@@ -1,6 +1,11 @@
+import {useState} from 'react';
+
 import {db} from '../firebase'
 
 const usePagination = () => {
+
+    const [arrayRaw, setArrayRaw] = useState([]);
+
     const setCurrentPage = (element, pages) => {
         const val = +element.target.value;
         if(val > pages) {
@@ -66,6 +71,7 @@ const usePagination = () => {
 
 
     const filter = async (url, filter, perPage, lastId, currPage) => {
+        console.log('FETCHING')
         let query = await db.collection(url);
 
         if(filter.price.from === null) {
@@ -96,6 +102,9 @@ const usePagination = () => {
 
         }))
         .then(data => {
+            console.log(arrayRaw)
+            setArrayRaw(data);
+            data.sort((a, b) =>  parseFloat(a.price) - parseFloat(b.price));
             let paginatedArray;
             if(data) {
                 const filtered = data.filter(value => Object.keys(value).length !== 0);
@@ -110,6 +119,7 @@ const usePagination = () => {
                     collection: null
                 }
             }
+
 
             const filteredData = {
                 data: paginatedArray,
@@ -142,7 +152,7 @@ const usePagination = () => {
         fetch: fetch,
         setCurrentPage: setCurrentPage,
         updateActualPage: updateActualPage,
-        filter: filter
+        filter: filter,
     }
 }
 
