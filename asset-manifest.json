@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ware-shop/static/css/main.7d7856f8.chunk.css",
-    "main.js": "/ware-shop/static/js/main.6470ee60.chunk.js",
-    "main.js.map": "/ware-shop/static/js/main.6470ee60.chunk.js.map",
+    "main.css": "/ware-shop/static/css/main.04ace608.chunk.css",
+    "main.js": "/ware-shop/static/js/main.060d08a4.chunk.js",
+    "main.js.map": "/ware-shop/static/js/main.060d08a4.chunk.js.map",
     "runtime-main.js": "/ware-shop/static/js/runtime-main.9be14dfa.js",
     "runtime-main.js.map": "/ware-shop/static/js/runtime-main.9be14dfa.js.map",
-    "static/js/2.c22930da.chunk.js": "/ware-shop/static/js/2.c22930da.chunk.js",
-    "static/js/2.c22930da.chunk.js.map": "/ware-shop/static/js/2.c22930da.chunk.js.map",
+    "static/js/2.30610880.chunk.js": "/ware-shop/static/js/2.30610880.chunk.js",
+    "static/js/2.30610880.chunk.js.map": "/ware-shop/static/js/2.30610880.chunk.js.map",
     "index.html": "/ware-shop/index.html",
-    "static/css/main.7d7856f8.chunk.css.map": "/ware-shop/static/css/main.7d7856f8.chunk.css.map",
-    "static/js/2.c22930da.chunk.js.LICENSE.txt": "/ware-shop/static/js/2.c22930da.chunk.js.LICENSE.txt",
+    "static/css/main.04ace608.chunk.css.map": "/ware-shop/static/css/main.04ace608.chunk.css.map",
+    "static/js/2.30610880.chunk.js.LICENSE.txt": "/ware-shop/static/js/2.30610880.chunk.js.LICENSE.txt",
     "static/media/facebook.43d0b3db.svg": "/ware-shop/static/media/facebook.43d0b3db.svg",
     "static/media/instagram.ab5dde1a.svg": "/ware-shop/static/media/instagram.ab5dde1a.svg",
     "static/media/Home.module.scss": "/ware-shop/static/media/main2.bbb469e7.jpg",
@@ -18,8 +18,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.9be14dfa.js",
-    "static/js/2.c22930da.chunk.js",
-    "static/css/main.7d7856f8.chunk.css",
-    "static/js/main.6470ee60.chunk.js"
+    "static/js/2.30610880.chunk.js",
+    "static/css/main.04ace608.chunk.css",
+    "static/js/main.060d08a4.chunk.js"
   ]
 }
