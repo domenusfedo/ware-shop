@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { useParams } from "react-router";
 
 import styles from './Shop.module.scss';
 import {gsap} from 'gsap';
@@ -72,23 +71,6 @@ const Shop = () => {
     useEffect(() => {
         fetchFunc();
     }, [shouldUpdate, actualPage])
-
-    const {coll} = useParams();
-
-    useEffect(() => {
-        console.log(coll)
-        if(coll) {
-            setActualFilters({
-                collections: [coll],
-                price: {
-                    from: null,
-                    to: null
-                },
-                sorting: 'asc'
-            })
-        }
-        setShouldUpdate(!shouldUpdate)
-    }, [])
 
     const setPage = async (e) => {
         const old = actualPage;

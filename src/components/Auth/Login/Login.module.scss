@@ -1,0 +1,77 @@
+@import '../../../assets/scss/colors.scss';
+
+.Login {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $main;
+
+    form {
+        width: 80%;
+        max-width: 20rem;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 25px;
+        padding: 2rem;
+
+        .Error {
+            color: red;
+            font-style: italic;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: darken($second, 5%);
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 1rem 0;
+
+            input {
+                margin: 0.5rem 0;
+                border-radius: 25px;
+                border: 0;
+                padding: 1rem;
+                background-color: rgba($color: $second, $alpha: 0.2);
+            }
+
+            label {
+                color: darken($second, 5%);
+            }
+
+        }
+        div:last-child {
+            align-items: center;
+
+            button {
+                font-family: inherit;
+                border: 3px solid darken($second, 5%);
+                border-radius: 25px;
+                background-color: $second;
+                color: $main;
+                width: 50%;
+                padding: 1rem;
+                font-weight: bold;
+            }
+
+            span {
+                margin-top: 1rem;
+                color: darken($second, 5%);
+                .link {
+                    text-decoration: none;
+                    font-weight: bold;
+                    color: darken($second, 5%);
+                }
+            }
+        }
+    }
+}

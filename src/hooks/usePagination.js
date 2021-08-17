@@ -1,6 +1,3 @@
-import {useState} from 'react';
-import Filters from '../components/Filters/Filters';
-
 import {db} from '../firebase'
 
 const usePagination = () => {
@@ -52,7 +49,7 @@ const usePagination = () => {
     const amount = async(url, perPage, filter) => {
         let pages;
 
-        let query = await db.collection(url);
+        let query = await db.firestore().collection(url);
         if(filter) {query = query.where('collection', 'in', filter.collections);}
         
         
@@ -72,7 +69,7 @@ const usePagination = () => {
     //I COULD MAKE ONE ARRAY OF ALL ITEMS, PASS IT TO THE CLIENT AND PAGINATED PASSED ARRAY SO APP WOULDN'T MAKE unnecessary REQUEST
     //I WILL CONNECT THIS APP WITH OWN NODE.JS SERVER BUT FOR NOW I AM USING FIREBASE
     const filter = async (url, filter, perPage, isAsc, currPage) => {
-        let query = await db.collection(url);
+        let query = await db.firestore().collection(url);
 
         if(filter.price.from === null) {
             filter.price.from = 0
@@ -111,15 +108,6 @@ const usePagination = () => {
             if(data) {
                 const filtered = data.filter(value => Object.keys(value).length !== 0);
                 paginatedArray = paginateGood(filtered, perPage, (currPage - 1));
-            } else {
-                paginatedArray = {
-                    id: 0,
-                    desc: 'No products found',
-                    imageUrl: '',
-                    price: null,
-                    title: 'No',
-                    collection: null
-                }
             }
 
 
@@ -138,7 +126,7 @@ const usePagination = () => {
         let partial = null;
         let lastId = actualPage * perPage;
 
-        await db.collection(url)
+        await db.firestore().collection(url)
         .orderBy("id", "asc")
         .startAt(lastId - (perPage - 1))
         .limit(perPage)

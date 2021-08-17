@@ -9,18 +9,14 @@ import { createStore, combineReducers, applyMiddleware, compose} from 'redux';
 
 import thunk from 'redux-thunk';
 
-import cartReducer from './store/reducers/cartReducer'
-import searchReducer from './store/reducers/searchReducer'
-import shopReducer from './store/reducers/shopReducer'
+import authReducer from './store/reducers/authReducer'
 
 import { HashRouter } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  cart: cartReducer,
-  shop: shopReducer,
-  search: searchReducer
+  auth: authReducer,
 })
 
 const store = createStore(

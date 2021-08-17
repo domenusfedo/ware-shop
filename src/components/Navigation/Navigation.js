@@ -1,11 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
-import styles from './Navigation.module.scss';
+import {connect} from 'react-redux';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
+import styles from './Navigation.module.scss';
 import {gsap} from 'gsap';
 
-const Navigation = () => {
+const Navigation = props => {
     const [toggleMenu, setToggleMenu] = useState(false);
     // const [location, setLocation] = useState(useLocation());
 
@@ -29,6 +30,8 @@ const Navigation = () => {
     const home = useRef();
     const shop = useRef();
     const about = useRef();
+
+    const usersOpt = useRef();
 
     const rest = [home, shop, about];
     useLocation()
@@ -55,7 +58,16 @@ const Navigation = () => {
                 color= '#65768C';
             }
             break;
-            default: return;
+            case '#/login': {
+                actual = about;
+                color= '#243040';
+            }
+            break;
+            case '#/acc': {
+                color= '#243040';
+            }
+            break;
+            default: return
         }
 
         if(toggleMenu) {
@@ -75,12 +87,15 @@ const Navigation = () => {
             fill: color
         }) 
 
-        gsap.to([elements[0].current, elements[1].current], {
+        actual ? gsap.to([elements[0].current, elements[1].current], {
+            opacity: 0.5,
+            color: color
+        }) : gsap.to([elements[0].current, elements[1].current, elements[2].current], {
             opacity: 0.5,
             color: color
         })
 
-        gsap.fromTo([actual.current], {
+        actual && gsap.fromTo([actual.current], {
             opacity: 0.2
         }, {
             opacity: 1,
@@ -89,13 +104,16 @@ const Navigation = () => {
     })
 
     const menuHandler = async () => {
+        if(window.innerWidth > 720) {
+            return
+        }
         await setToggleMenu(!toggleMenu);
 
         if(!toggleMenu) {
             menuAnimation.fromTo([nav.current],{
                 height: '5rem',
             },{
-                height: '100vh',
+                height: '100%',
                 duration: 0.1
             })
             
@@ -113,6 +131,14 @@ const Navigation = () => {
                 opacity: 1,
                 display: 'flex',
             }, '<0.1')
+
+            menuAnimation.fromTo([usersOpt.current], {
+                opacity: 0,
+                display: 'none'
+            },{
+                opacity: 1,
+                display: 'flex'
+            }, '<')
 
             menuAnimation.play()
         } else {
@@ -147,7 +173,7 @@ const Navigation = () => {
                     <NavLink to="/about" className={styles.Links} ref={about} >ABOUT</NavLink>
                 </div>
 
-                <div className={styles.UserOptions}>
+                <div className={styles.UserOptions} ref={usersOpt}>
                          <div className={styles.Icon}>
                              <svg
                                  xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +208,7 @@ const Navigation = () => {
                              </svg>
                          </div>
 
-                         <div className={styles.Icon}>
+                         <NavLink to={props.userId ? '/acc' : '/login'} className={styles.Icon} onClick={() => menuHandler()}>
                              <svg
                              xmlns="http://www.w3.org/2000/svg"
                              style={{ isolation: "isolate" }}
@@ -194,7 +220,7 @@ const Navigation = () => {
                                  d="M65.383 58.632C71.235 54.054 75 46.928 75 38.929c0-13.798-11.202-25-25-25s-25 11.202-25 25c0 7.999 3.765 15.125 9.617 19.703l-.229.397-6.613 11.454c-4.967 8.603-.934 15.588 9 15.588h26.45c9.934 0 13.967-6.985 9-15.588l-6.613-11.454-.229-.397z"
                              ></path>
                              </svg>
-                         </div>
+                         </NavLink>
                      </div>
 
                 <div className={styles.Menu} onClick={() => menuHandler()}>
@@ -214,13 +240,23 @@ const Navigation = () => {
                 </div>
 
 
-                {toggleMenu && <div className={styles.MobileOptions}>
+                {toggleMenu && <>
+                <div className={styles.MobileOptions}>
                     <NavLink to="/" className={styles.Links} onClick={() => menuHandler()}>HOME</NavLink>
                     <NavLink to="/shop" className={styles.Links} onClick={() => menuHandler()}>SHOP</NavLink>
                     <NavLink to="/about" className={styles.Links} onClick={() => menuHandler()}>CONTACT</NavLink>
-                </div>}
+                </div>
+                </>}
         </div>
     );
 };
 
-export default Navigation;
+const mapStateToProps = state => {
+    const userId = state.auth.userId
+    return {
+        userId
+    }
+        
+}
+
+export default connect(mapStateToProps)(Navigation);

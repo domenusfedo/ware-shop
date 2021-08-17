@@ -7,8 +7,6 @@ import usePagination from '../../../hooks/usePagination';
 
 import Pagination from '../../UI/Pagination/Pagination';
 
-import { useHistory } from "react-router-dom";
-
 const Home = () => {
     const [actualData, setActualData] = useState([]);
     const [actualPage, setActualPage] = useState(1);
@@ -29,8 +27,6 @@ const Home = () => {
 
     const posts = useRef();
     const mainPhoto = useRef();
-
-    let history = useHistory();
 
     useEffect(() => {
         amount('posts', perPage).then(data => {
@@ -75,8 +71,8 @@ const Home = () => {
         fetchFunc();
     }, [actualPage, perPage, setActualData]); //fires only on page changes
 
-    const setPage = (action) => {
-        const actual = setCurrentPage(action, actualPage, pages);
+    const setPage = (e) => {
+        const actual = setCurrentPage(e, pages);
         setActualPage(actual);
     }
 
@@ -142,7 +138,7 @@ const Home = () => {
                                 {/* <span style={{display: 'none'}}>{post.longDescription}</span> */}
                                 <div className={styles.actions}>
                                     <button className={styles.CTA} onClick={(e) => togglePostDetails(e)}>learn more...</button>
-                                    <button onClick={() => history.push(`/shop/${post.title}`)}>visit shop</button>
+                                    <button onClick={() => {}}>visit shop</button>
                                 </div>
                             </div>
                             </div>

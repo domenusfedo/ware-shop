@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "dot-env": "0.0.1",
+    "dotenv": "^10.0.0",
     "firebase": "^8.8.1",
     "firestore": "^1.1.6",
     "gsap": "^3.7.1",

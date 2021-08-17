@@ -24,8 +24,6 @@ const Filters = props => {
         }
     }))
 
-    const info = 'A-Z';
-
     const options = useRef();
     const filters = useRef();
 
@@ -59,6 +57,7 @@ const Filters = props => {
     }
 
     const addPrice = (e) => {
+        console.log(e.target.value)
         filtersTerm.price[e.target.id] = e.target.value;
     }
 
@@ -76,7 +75,7 @@ const Filters = props => {
 
     useEffect(() => {
         setFiltersTerm(props.actualFilters)
-    }, [props.open])
+    }, [props.open, props.actualFilters])
 
     return (
         <div className={styles.Filters} ref={filters}>
@@ -95,11 +94,11 @@ const Filters = props => {
                                 <h4>Price</h4>
                                 <div className={styles.Holder2}>
                                 <div>
-                                    <input type='number' placeholder='from' id='from' onChange={(e) => addPrice(e)}></input>
+                                    <input type='number' placeholder='from'  id='from' onChange={(e) => addPrice(e)}></input>
                                 </div>
                                 <span>-</span>
                                 <div>
-                                    <input type='number' placeholder='to' id='to' onChange={(e) => addPrice(e)}></input>
+                                    <input type='number' placeholder='to'  id='to' onChange={(e) => addPrice(e)}></input>
                                 </div>
                             </div>
                         </div>
