@@ -15,7 +15,7 @@ const Account = props => {
     return (
         <div className={style.Account}>
             {!props.uid && <Redirect to='/' />}
-            <span>Hello, {props.uid}</span>
+            <span>Hello {props.name},</span>
             <div>
                 <span>Latest Order</span>
             </div>
@@ -25,9 +25,9 @@ const Account = props => {
 };
 
 const mapPropsToProps = state => {
-    const uid = state.auth.userId;
     return {
-        uid: uid
+        uid: state.auth.userId,
+        name: state.auth.name,
     }
 }
 

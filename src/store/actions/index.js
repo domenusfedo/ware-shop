@@ -1,3 +1,5 @@
 export {
-    signIn
+    signIn,
+    signOut,
+    signUp
 } from './authActions'

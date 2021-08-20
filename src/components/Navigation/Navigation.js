@@ -59,11 +59,14 @@ const Navigation = props => {
             }
             break;
             case '#/login': {
-                actual = about;
                 color= '#243040';
             }
             break;
             case '#/acc': {
+                color= '#243040';
+            }
+            break;
+            case '#/signup': {
                 color= '#243040';
             }
             break;
@@ -140,8 +143,13 @@ const Navigation = props => {
                 display: 'flex'
             }, '<')
 
-            menuAnimation.play()
+            document.body.style.scroll = 'noscroll'
+            document.body.style.overflow = 'hidden'
+            menuAnimation.play();
+
         } else {
+            document.body.style.scroll = 'scroll'
+            document.body.style.overflow = 'scroll'
             menuAnimation.reverse()
         }
     }

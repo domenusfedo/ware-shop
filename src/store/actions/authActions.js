@@ -7,7 +7,13 @@ export const signIn = creds => {
         .auth()
         .signInWithEmailAndPassword(creds.email, creds.password)
         .then((data) => {
-            dispatch({type: actionTypes.LOG_IN, data: data})
+            console.log(data);
+            const user = {
+                uid: data.user.uid,
+                name: data.user.displayName
+            }
+            console.log(user)
+            dispatch({type: actionTypes.LOG_IN, data: user})
         })
         .catch((err) => {
             dispatch({type: actionTypes.LOG_IN_ERR, data: err.message})
@@ -31,13 +37,18 @@ export const signUp = creds => {
         db
         .auth()
         .createUserWithEmailAndPassword(creds.email, creds.password)
-        .then(() => {
+        .then(data => {
             db.auth().currentUser.updateProfile({
                 displayName: creds.name
             })
+            const user = {
+                uid: data.user.uid,
+                name: creds.name
+            }
+            return user
         })
-        .then(() => {
-            return dispatch({type: actionTypes.SIGN_UP})
+        .then(data => {
+            return dispatch({type: actionTypes.SIGN_UP, data: data})
         })
         .catch(err => {
             return dispatch({type: actionTypes.SIGN_UP_ERR, data: err})
