@@ -1,0 +1,19 @@
+@import '../../assets/scss/colors.scss';
+
+.Cart {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $main;
+    text-align: center;
+    color: $second;
+
+}
+
+@media screen and (min-width: 725px) {
+    .Cart {
+
+    }
+}

@@ -51,7 +51,7 @@ export const signUp = creds => {
             return dispatch({type: actionTypes.SIGN_UP, data: data})
         })
         .catch(err => {
-            return dispatch({type: actionTypes.SIGN_UP_ERR, data: err})
+            return dispatch({type: actionTypes.SIGN_UP_ERR, data: err.message})
         })
     }
 }

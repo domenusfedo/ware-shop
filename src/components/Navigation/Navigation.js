@@ -53,6 +53,10 @@ const Navigation = props => {
                 color= '#243040';
             }
             break;
+            case '#/cart': {
+                color= '#243040';
+            }
+            break;
             case '#/about': {
                 actual = about;
                 color= '#65768C';
@@ -197,7 +201,7 @@ const Navigation = props => {
                              </svg>
                          </div>
 
-                         <div className={styles.Icon}>
+                         <NavLink to='/cart' className={styles.Icon} onClick={() => menuHandler()}>
                             <svg
                                  xmlns="http://www.w3.org/2000/svg"
                                  style={{ isolation: "isolate" }}
@@ -214,7 +218,7 @@ const Navigation = props => {
                                  <path d="M45.827 13.966c1.673.965 1.892 3.724.488 6.155L27.138 53.329c-1.404 2.431-3.902 3.621-5.575 2.655-1.673-.965-1.892-3.724-.488-6.155l19.177-33.208c1.404-2.431 3.902-3.621 5.575-2.655zM54.323 13.966c-1.673.965-1.892 3.724-.488 6.155l19.177 33.208c1.404 2.431 3.902 3.621 5.575 2.655 1.673-.965 1.892-3.724.488-6.155L59.898 16.621c-1.404-2.431-3.902-3.621-5.575-2.655z"></path>
                             </g>
                              </svg>
-                         </div>
+                         </NavLink>
 
                          <NavLink to={props.userId ? '/acc' : '/login'} className={styles.Icon} onClick={() => menuHandler()}>
                              <svg

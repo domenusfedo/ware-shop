@@ -11,22 +11,18 @@ import Signup from './components/Auth/Signup/Signup';
 import Login from './components/Auth/Login/Login';
 import Account from './components/Auth/Account/Account';
 
+import Cart from './components/Cart/Cart';
+
 //import asyncComponent from './hoc/asyncComponent';
 
-import {Redirect, Route, Switch} from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Route, Switch} from 'react-router-dom';
 
 // const asyncComp = asyncComponent(url => {
 //   return import(url)
 // });
 
-const route = (
-  <>
-    
-  </>
-)
 
-function App({userId}) {
+function App() {
   return (
     <div className={styles.App}>
       <Navigation />
@@ -54,6 +50,11 @@ function App({userId}) {
           <Login/>
         </Route>
 
+        <Route path='/cart' exact>
+          <Cart/>
+          <Footer/>
+        </Route>
+
         <Route path='/acc' exact>
           <Account/>
         </Route>
@@ -62,12 +63,4 @@ function App({userId}) {
     </div>
   );
 }
-
-const mapStateToProps = state => {
-  const userId = state.auth.userId
-  return {
-      userId
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

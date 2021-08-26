@@ -38,7 +38,7 @@ const authReducer = (state={}, action) => {
         case actionTypes.SIGN_UP_ERR:
             console.log('ERR', action)
             state = {
-                err: action
+                err: action.data
             }
         return state;
 

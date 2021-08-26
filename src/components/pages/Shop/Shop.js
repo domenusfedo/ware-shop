@@ -8,7 +8,10 @@ import usePagination from '../../../hooks/usePagination';
 
 import Filters from '../../Filters/Filters';
 
-const Shop = () => {
+import { connect } from 'react-redux';
+import { addProduct } from '../../../store/actions';
+
+const Shop = props => {
     const [actualData, setActualData] = useState([]);
     const [chunks, setChunks] = useState([]);
     const [actualPage, setActualPage] = useState(1);
@@ -122,7 +125,14 @@ const Shop = () => {
                                 <h5>{product.collection  + ' collection'}</h5>
                                 <div className={styles.Bottom}>
                                     <h3>${product.price}</h3>
-                                    <button>add to cart</button>
+                                    <div>
+                                    {/* <select id="" name="c">
+                                        <option value="4pack">4pack</option>
+                                        <option value="6pack">6pack</option>
+                                        <option value="8pack">8pack</option>
+                                    </select> */}
+                                    <button onClick={() => props.addProduct(product)}>add to cart</button>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -136,4 +146,10 @@ const Shop = () => {
     );
 };
 
-export default Shop;
+const mapDispatchToProps =  dispatch => {
+    return {
+        addProduct: (e) => dispatch(addProduct(e))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Shop);

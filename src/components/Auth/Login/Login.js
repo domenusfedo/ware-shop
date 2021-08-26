@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import style from './Login.module.scss'
 
 import { NavLink, Redirect } from 'react-router-dom';
@@ -19,6 +19,12 @@ const Login = props => {
         })
     }
 
+    useEffect(() => {
+        return () => {
+            //clear error dispatch function
+        }
+    })
+
     return (
         <div className={style.Login}>
         {props.uid && <Redirect to='/acc' />}
@@ -33,7 +39,7 @@ const Login = props => {
                 <input name='password' value={password} type='password' onChange={(e) => setPassword(e.target.value)}></input>
             </div>
 
-            {props.err && <span className={style.Error}>{props.err}</span>}
+            <span className={style.Error}>{props.err && props.err}</span>
             
             <div>
                 <button type='submit' onClick={(e) => submitHandler(e)}>Log in</button>
