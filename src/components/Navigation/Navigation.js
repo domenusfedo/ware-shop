@@ -95,10 +95,10 @@ const Navigation = props => {
         }) 
 
         actual ? gsap.to([elements[0].current, elements[1].current], {
-            opacity: 0.5,
+            opacity: 0.75,
             color: color
         }) : gsap.to([elements[0].current, elements[1].current, elements[2].current], {
-            opacity: 0.5,
+            opacity: 0.75,
             color: color
         })
 
@@ -256,7 +256,7 @@ const Navigation = props => {
                 <div className={styles.MobileOptions}>
                     <NavLink to="/" className={styles.Links} onClick={() => menuHandler()}>HOME</NavLink>
                     <NavLink to="/shop" className={styles.Links} onClick={() => menuHandler()}>SHOP</NavLink>
-                    <NavLink to="/about" className={styles.Links} onClick={() => menuHandler()}>CONTACT</NavLink>
+                    <NavLink to="/about" className={styles.Links} onClick={() => menuHandler()}>ABOUT</NavLink>
                 </div>
                 </>}
         </div>

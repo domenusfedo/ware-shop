@@ -103,6 +103,9 @@
                             // display: flex;
                             // justify-content: space-between;
                             // align-items: center;
+                            span {
+                                margin: 0.5rem;
+                            }
                             select {
                                 background-color: transparent;
                                 border: none;
@@ -116,6 +119,12 @@
                                 border: 3px solid $second;
                                 border-radius: 10px;
                                 padding: 0.5rem 1rem;
+                                cursor: pointer;
+                                width: 7rem;
+                            }
+                            button:hover {
+                                background-color: $second;
+                                color: $main;
                             }
                         }
     

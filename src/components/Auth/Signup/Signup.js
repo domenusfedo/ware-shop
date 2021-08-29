@@ -32,8 +32,8 @@ const Signup = props => {
     return (
         <div className={style.Signup}>
             {props.id && <Redirect to='/acc' />}
+            <div className={style.Small}></div>
             <form>
-            <h1>Sign up!</h1>
                 <div>
                    <span>name</span>
                     <input name='name' type='text' value={name} onChange={(e) => setName(e.target.value)}></input> 

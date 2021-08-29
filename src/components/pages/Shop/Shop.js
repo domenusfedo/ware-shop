@@ -18,6 +18,7 @@ const Shop = props => {
     const [perPage, setPerPage] = useState(2);
     const [pages, setPages] = useState(2);
     const [toggleFilters, setToggleFilters] = useState(false);
+    const [togglePop, setTogglePop] = useState(false);
 
     const [actualFilters, setActualFilters] = useState({
         collections: ['coloren', 'golden', 'classen', 'wooden'],
@@ -106,11 +107,22 @@ const Shop = props => {
         setShouldUpdate(!shouldUpdate);
     }
 
+    const addToCart = (product, e) => {
+        setTogglePop(true)
+        e.target.innerText = 'adding...'
+        props.addProduct(product)
+        setTimeout(() => {
+            setTogglePop(false)
+            e.target.innerText = 'add to cart'
+        }, 750)
+    }
+
     return (
         <div className={styles.Shop}>
                 <h1 className={styles.Filters} ref={filters}>
                     <Filters open={toggleFilters} actualFilters={actualFilters} toggleFilters={() => setToggleFilters(!toggleFilters)} applyFilters={(data) => applyFilters(data)}/> 
                 </h1>
+
 
                 <div className={styles.Right}>
                     <div className={styles.ProductsHolder} ref={products}>
@@ -131,7 +143,8 @@ const Shop = props => {
                                         <option value="6pack">6pack</option>
                                         <option value="8pack">8pack</option>
                                     </select> */}
-                                    <button onClick={() => props.addProduct(product)}>add to cart</button>
+                                    {/* {props.inCart.includes(product.title) && <span>already in cart</span>} */}
+                                    <button onClick={(e) => addToCart(product, e)}>add to cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -146,10 +159,16 @@ const Shop = props => {
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        inCart: state.cart.inCart
+    }
+}
+
 const mapDispatchToProps =  dispatch => {
     return {
         addProduct: (e) => dispatch(addProduct(e))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Shop);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

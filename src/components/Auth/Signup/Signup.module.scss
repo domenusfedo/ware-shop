@@ -17,7 +17,6 @@
         align-items: center;
         flex-direction: column;
         border-radius: 25px;
-        padding: 2rem;
 
         h1 {
             width: 100%;
@@ -29,10 +28,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin: 1rem 0;
+            margin-bottom: 1rem;
 
             input {
-                margin: 0.5rem 0;
+                margin-top: 0.25rem;
                 border-radius: 25px;
                 border: 0;
                 padding: 1rem;
@@ -67,6 +66,15 @@
                     color: darken($second, 5%);
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 300px) {
+    .Signup {
+        .Small {
+            height: 5rem;
+            width: 100%;
         }
     }
 }

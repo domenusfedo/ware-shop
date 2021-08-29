@@ -83,7 +83,7 @@ const Filters = props => {
             <div className={styles.Options} ref={options}>
                     {props.open && <div>
                         <div className={styles.Elements}>
-                                <h4>Collections</h4>
+                                <h5>Collections</h5>
                                 <div className={styles.Holder}>
                                     {collections.map(e => (
                                         <button key={e} id={e} onClick={(e) => toggleCollection(e)} style={filtersTerm.collections.includes(e) ? {color: '#C1CBD9', backgroundColor: '#243040'} : {color: '#243040', backgroundColor: 'transparent'}}>{e}</button>
@@ -91,7 +91,7 @@ const Filters = props => {
                                 </div>
                         </div>
                         <div className={styles.Elements}>
-                                <h4>Price</h4>
+                                <h5>Price</h5>
                                 <div className={styles.Holder2}>
                                 <div>
                                     <input type='number' placeholder='from'  id='from' onChange={(e) => addPrice(e)}></input>
@@ -103,7 +103,7 @@ const Filters = props => {
                             </div>
                         </div>
                         <div className={styles.Elements}>
-                            <h4>Sorting</h4>
+                            <h5>Sorting</h5>
                             <span id='asc' onClick={(e) => sorting(e)}>A-Z</span>
                         </div>
                         <div className={styles.ButtonHolder}>

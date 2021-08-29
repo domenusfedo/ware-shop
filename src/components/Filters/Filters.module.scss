@@ -19,6 +19,7 @@
         height: 0;
         opacity: 0;
         cursor: pointer;
+        outline: 0;
 
         div {
             .Elements {
@@ -30,7 +31,7 @@
                 flex-direction: column;
                 width: 100%;
 
-                h4 {
+                h5 {
                     margin: 0.5rem 0 ;
                 }
 

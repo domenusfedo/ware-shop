@@ -1,0 +1,21 @@
+@import '../../assets/scss/colors.scss'; 
+
+.Orders {
+    width: 100%;
+    z-index: 5001;
+    overflow: hidden;
+    color: $main;
+
+    .Cancel {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 5rem;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+}

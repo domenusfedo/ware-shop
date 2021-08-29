@@ -2,24 +2,69 @@
 
 .Contact {
     width: 100%;
-    height: 100vh;
     background-color: darken($second, 3%);
     //background-color: lighten($second, 1%);
-    padding-top: 5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     color: $fifth;
+    text-align: center;
+    padding: 5rem 0;
+    width: 100%;
 
-    div {
-        background-color: yellow;
-        width: 100%;
-        height: 50vh;
-        text-align: center;
+    .Information {
+        min-height: 20rem;
         display: flex;
         justify-content: center;
-        align-items: flex-end;
-        padding-top: 1rem 0;
+        align-items: center;
+        flex-direction: column;
+        padding: 1rem;
+
+        span {
+            max-width: 25rem;
+            margin: 0.5rem 0;
+        }
+    }
+
+    .Holder {
+        .Element {
+            background-color: darken($second, 5%);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-width: 20rem;
+            height: 20rem;
+    
+            span {
+                
+            }
+        }
+        .Element:first-child {
+            margin-top: 2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 725px) {
+    .Contact {
+        .Information {
+
+        }
+        .Holder {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            .Element {
+                width: 33%;
+                margin: 0 1rem;
+            }
+
+            .Element:first-child {
+                margin-top: 0;
+            }
+        }
     }
 }

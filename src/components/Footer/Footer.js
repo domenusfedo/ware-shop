@@ -9,10 +9,10 @@ const Footer = () => {
     return (
         <div className={styles.Footer}>
             <div className={styles.First}>
-                <span>want to be informed about new ideas, dont't you?</span>
+                <span>want to be informed, dont't you?</span>
                 <span className={styles.CAT}>sign up for newsletter</span>
                 <div className={styles.Newsletter}>
-                    <input placeholder='example@example.com'></input>
+                    <input placeholder='doesnt-work@sorry.com'></input>
                     <button>submit</button>
                 </div>
             </div>

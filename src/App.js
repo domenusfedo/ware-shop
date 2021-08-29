@@ -52,7 +52,6 @@ function App() {
 
         <Route path='/cart' exact>
           <Cart/>
-          <Footer/>
         </Route>
 
         <Route path='/acc' exact>
