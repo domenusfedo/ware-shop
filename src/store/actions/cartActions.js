@@ -7,9 +7,21 @@ export const addProduct = product => {
     }
 }
 
-export const removeProduct = productId => {
+export const removeProduct = (productId, name, quantity, price) => {
+    const data = {
+        id: productId,
+        name: name,
+        quantity: quantity,
+        price: price
+    }
     return dispatch => {
-        dispatch({type: actionTypes.REMOVE_PRODUCT, data: productId})
+        dispatch({type: actionTypes.REMOVE_PRODUCT, data: data})
+    }
+}
+
+export const changeValue = productId => {
+    return dispatch => {
+        
     }
 }
 
@@ -17,4 +29,5 @@ export const makeOrder = () => {
     //isSigneIn
     //send to [userId] collections
     //redirect to account
+    //will create an object with all details such as payment method, delievery
 }
