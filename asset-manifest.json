@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ware-shop/static/css/main.b80afb60.chunk.css",
-    "main.js": "/ware-shop/static/js/main.0c6475ea.chunk.js",
-    "main.js.map": "/ware-shop/static/js/main.0c6475ea.chunk.js.map",
+    "main.css": "/ware-shop/static/css/main.34413e2f.chunk.css",
+    "main.js": "/ware-shop/static/js/main.dbf7ae32.chunk.js",
+    "main.js.map": "/ware-shop/static/js/main.dbf7ae32.chunk.js.map",
     "runtime-main.js": "/ware-shop/static/js/runtime-main.9be14dfa.js",
     "runtime-main.js.map": "/ware-shop/static/js/runtime-main.9be14dfa.js.map",
     "static/js/2.029d6b7c.chunk.js": "/ware-shop/static/js/2.029d6b7c.chunk.js",
     "static/js/2.029d6b7c.chunk.js.map": "/ware-shop/static/js/2.029d6b7c.chunk.js.map",
     "index.html": "/ware-shop/index.html",
-    "static/css/main.b80afb60.chunk.css.map": "/ware-shop/static/css/main.b80afb60.chunk.css.map",
+    "static/css/main.34413e2f.chunk.css.map": "/ware-shop/static/css/main.34413e2f.chunk.css.map",
     "static/js/2.029d6b7c.chunk.js.LICENSE.txt": "/ware-shop/static/js/2.029d6b7c.chunk.js.LICENSE.txt",
     "static/media/facebook.43d0b3db.svg": "/ware-shop/static/media/facebook.43d0b3db.svg",
     "static/media/instagram.ab5dde1a.svg": "/ware-shop/static/media/instagram.ab5dde1a.svg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.9be14dfa.js",
     "static/js/2.029d6b7c.chunk.js",
-    "static/css/main.b80afb60.chunk.css",
-    "static/js/main.0c6475ea.chunk.js"
+    "static/css/main.34413e2f.chunk.css",
+    "static/js/main.dbf7ae32.chunk.js"
   ]
 }
