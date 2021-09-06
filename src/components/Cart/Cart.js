@@ -7,9 +7,11 @@ import {gsap} from 'gsap';
 
 import {connect} from 'react-redux';
 import { removeProduct } from '../../store/actions';
+import { Redirect } from 'react-router';
 
 const Cart = props => {
     const [toggleOrder, setToggleOrder] = useState(false);
+    const [redirect, setRedirect] = useState(false) //will be deleted
 
     const orderField = useRef();
 
@@ -35,7 +37,10 @@ const Cart = props => {
             height: '10rem',
             zIndex: 1
         }, {
-            height: '100vh',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             zIndex: 5000,
             opacity: 1
         })
@@ -43,13 +48,25 @@ const Cart = props => {
         setToggleOrder(!toggleOrder)
     }
 
-    const closeOrder = async () => {
+    const closeOrder = async (a) => {
         await setToggleOrder(!toggleOrder)
-        orderAnimation.reverse();
+        await orderAnimation.reverse();
+        if(a) {
+            console.log(a)
+            setRedirect(true)   
+        }
     }
+
+    console.log(props.products)
 
     return (
         <div className={style.Cart}>
+            {redirect && <Redirect to='/acc'/>}
+            {/* {redirect && <div style={{position: 'absolute', color: 'red', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+                <h1>products ordered</h1>
+                <span>close</span>
+                <span>account</span>
+            </div>} */}
             <h1>Your cart</h1>
             {props.products.length > 0 ? 
             <div className={style.Holder}>
@@ -66,7 +83,7 @@ const Cart = props => {
                 <div className={style.MainButton} ref={orderField}>
                     <h2>Total: ${props.total} (+shipping)</h2>
                     {props.isAuth ? <button onClick={() => expandOrder()}>Make order!</button> : <button>you need to sign in</button>}
-                    {toggleOrder && <Orders close={() => closeOrder()}></Orders>}
+                    {toggleOrder && <Orders close={(a) => closeOrder(a)}></Orders>}
                 </div>
             </div>
             :

@@ -50,6 +50,16 @@ const cartReducer = (state = {
             localStorage.setItem("total", state.total);
 
             return state;
+
+        case actionTypes.ORDER_FINISHED:
+            localStorage.removeItem("cart")
+            localStorage.removeItem("total")
+            const copy = state
+            state = {
+               products: [],
+               total: 0
+            }
+            return state
         default:
             const products = JSON.parse(localStorage.getItem("cart"));
             const total = localStorage.getItem("total");

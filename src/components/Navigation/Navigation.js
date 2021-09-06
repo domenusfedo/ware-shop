@@ -165,8 +165,8 @@ const Navigation = props => {
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ isolation: "isolate" }}
-                width="25px"
-                height="25px"
+                width="40px"
+                height="40px"
                 viewBox="90.021 142.483 319.957 215.034"
                 >
                 <path

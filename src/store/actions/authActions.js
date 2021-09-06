@@ -45,6 +45,7 @@ export const signUp = creds => {
                 uid: data.user.uid,
                 name: creds.name
             }
+            db.firestore().collection('orders').doc(data.user.uid).set({})
             return user
         })
         .then(data => {

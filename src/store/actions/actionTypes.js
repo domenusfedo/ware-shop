@@ -9,3 +9,5 @@ export const SIGN_UP_ERR = 'SIGN_UP_ERR';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 export const MAKE_ORDER = 'MAKE_ORDER';
+
+export const ORDER_FINISHED = 'ORDER_FINISHED';

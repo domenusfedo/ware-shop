@@ -2,28 +2,170 @@
 
 .Account {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     background-color: $main;
+    color: $second;
+
+    .userCircle {
+        margin-top: 9rem;
+    }
 
     span {
-        margin: 5rem 0;
-    }
-
-    div {
-        margin: 5rem 0;
-    }
-
-    button {
-        margin: 5rem 0;
-        background-color: $second;
-        color: $main;
+        margin-bottom: 0;
+        font-size: 1.2rem;
         font-weight: bold;
-        padding: 1rem;
-        border: none;
+    }
+
+    .name {
+        margin-top: 1rem;
+        margin-bottom: 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    h1 {
+        margin: 4rem 0;
+    }
+
+    .LogOut{
+        margin: 0;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        border: 4px solid $second;
         border-radius: 25px;
+        background-color: transparent;
+        font-family: inherit;
+        font-weight: bold;
+    }
+
+    .Orders {
+        width: 100%;
+        max-width: 30rem;
+        background-color: darken($main, 2%);
+        border-radius: 25px;
+        color: $second;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 3rem;
+
+        .Top {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+
+            h1 {
+                margin: 0;
+            }
+
+            .status {
+                font-style: italic;
+            }
+        }
+
+        .Mid {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0;
+
+            h2 {
+                margin: 0;
+            }
+
+            .Prods {
+                font-size: 1rem;
+                font-style: italic;
+                opacity: .9;
+            }
+        }
+
+        .Bottom{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0;
+
+            h2 {
+                margin: 0;
+            }
+
+            .Prods {
+                font-size: 1rem;
+                font-style: italic;
+                opacity: .9;
+            }
+        }
+
+        .Total {
+            width: 90%;
+            margin: 2rem 0;
+
+            svg {
+            }
+        }
+    }
+}
+
+@media screen and (min-height: 666px) {
+    .Account {
+    
+        .userCircle {
+           svg {
+               height: 168px;
+               width: 168px;
+           }
+        }
+    
+        .other {
+            margin: 2rem 0;
+        }
+    
+        button {
+            margin: 2rem 0;
+        }
+    
+        .Orders {
+            
+            .triangle {
+             svg {
+                 
+             }
+            }
+    
+            h1 {
+                
+            }
+    
+            .OrdersHolder {
+               
+    
+                .Order {
+                  
+    
+                    div {
+                     
+    
+                        .Bottom {
+                          
+                        }
+    
+                        span {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }

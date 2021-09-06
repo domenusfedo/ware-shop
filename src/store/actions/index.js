@@ -6,5 +6,6 @@ export {
 
 export {
     addProduct,
-    removeProduct
+    removeProduct,
+    makeOrder
 } from './cartActions'

@@ -25,7 +25,14 @@ export const changeValue = productId => {
     }
 }
 
-export const makeOrder = () => {
+export const makeOrder = (id, obj) => {
+    const orderNumber = Math.floor(Math.random() * 9000 + 1);
+    return dispatch => {
+        db.firestore().collection('orders').doc(id).update({
+            [orderNumber]: obj
+        });
+        dispatch({type: actionTypes.ORDER_FINISHED})
+    }
     //isSigneIn
     //send to [userId] collections
     //redirect to account
