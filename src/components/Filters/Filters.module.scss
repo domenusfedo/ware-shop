@@ -118,136 +118,6 @@
         }
         }
     }
-
-    // .Options {
-    //     display: flex;
-    //     justify-content: space-around;
-    //     align-items: center;
-    //     flex-direction: column;
-    //     background-color: $main;
-    //     z-index: 2005;
-    //     height: 0;
-    //     opacity: 0;
-
-    //     .Header {
-    //         font-weight: bold;
-    //         width: 100%;
-    //         height: 5rem;
-    //         display: flex;
-    //         justify-content: space-between;
-    //         align-items: center;
-    //         border-bottom: 3px solid rgba(0, 0, 0, 0.2);
-
-    //         span {
-    //             margin: 0;
-    //             padding: 0 2rem;
-    //         }
-    //     }
-
-    //     div {
-    //         width: 100%;
-
-    //         .Elements {
-    //             border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    //             padding: 2rem 0;
-    //             display: flex;
-    //             justify-content: center;
-    //             align-items: center;
-    //             flex-direction: column;
-    //             width: 100%;
-
-    //             h4 {
-    //                 margin: 0rem;
-    //                 font-weight: normal;
-    //             }
-
-    //             .Collections {
-    //                 display: flex;
-    //                 justify-content: center;
-    //                 align-items: center;
-    //                 max-width: 25rem;
-    //                 width: 100%;
-                    
-    //                 .Holder {
-    //                     display: flex;
-    //                     justify-content: center;
-    //                     align-items: center;
-    //                     flex-wrap: wrap;
-    //                     width: 100%;
-                        
-
-    //                     button {
-    //                         width: 10rem;
-    //                         margin: 1rem;
-    //                         background-color: transparent;
-    //                         border: 2px solid $second;
-    //                         padding: 1rem;
-    //                         border-radius: 25px;
-    //                         color: $second;
-    //                         font-weight: bold;
-    //                     }
-
-    //                     button:active {
-    //                         background-color: $second;
-    //                         color: $main;
-    //                     }
-    //                 }
-    //             }
-
-    //             .Holder2 {
-    //                 display: flex;
-    //                 justify-content: center;
-    //                 align-items: center;
-    //                 flex-direction: row;
-
-    //                 div {
-    //                     display: flex;
-    //                     justify-content: center;
-    //                     align-items: center;
-    //                     flex-direction: column;
-    //                     max-width: 5rem;
-    //                     margin: 0 2rem;
-
-    //                     input {
-    //                         width: 2rem;
-    //                         border: none;
-    //                         padding: 1rem;
-    //                         background-color: darken($main, 3%);
-    //                         text-align: center;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     .ButtonHolder {
-    //         display: flex;
-    //         justify-content: center;
-    //         align-items: center;
-    //         flex-direction: column;
-    //         margin-top: 2rem;
-
-    //         .Button {
-    //             margin-top: 2rem;
-    //             display: flex;
-    //             justify-content: center;
-    //             align-items: center;
-    
-    //             background-color: $main;
-    //             color: $second;
-    //             font-family: inherit;
-    //             font-weight: bold;
-    //             font-size: 2rem;
-    //             border: 5px solid $second;
-    //             border-radius: 25px;
-    //             width: 13rem;
-    //             padding: 0.5rem;
-    //         }
-    //         .Button:last-child {
-    //             border: none;
-    //         }
-    //     }
-    // }
 }
     
 
@@ -279,6 +149,7 @@
 
             .ButtonHolder {
                 position: relative;
+                flex-direction: row;
                 .Button {
                     position: unset;
                     display: block;

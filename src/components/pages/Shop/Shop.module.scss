@@ -38,7 +38,7 @@
             flex-wrap: wrap;
             width: 100%;
             max-width: 1300px;
-            min-height: 100vh;
+            min-height: 50vh;
             position: relative;
 
             .Loader {
@@ -141,14 +141,13 @@
 
 @media screen and (min-width: 725px) {
     .Shop {
-        
 
         .Filters {
-            
+
+
         }
 
         .Right {
-            
             
             .ProductsHolder {
                 max-width: 1156px;

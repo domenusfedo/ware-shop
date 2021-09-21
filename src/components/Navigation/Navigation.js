@@ -18,6 +18,11 @@ const Navigation = props => {
     }))
 
     const nav = useRef();
+    const nav1 = useRef();
+    const nav2 = useRef();
+    const nav3 = useRef();
+    const nav4 = useRef();
+    const nav5 = useRef();
     
     const logoSVG = useRef();
     const menuSVG = useRef();
@@ -94,6 +99,13 @@ const Navigation = props => {
             fill: color
         }) 
 
+        gsap.to([nav1.current, nav2.current, nav3.current, nav4.current], {
+            stopColor: color
+        });
+        gsap.to([nav5.current], {
+            fill: color
+        });
+
         actual ? gsap.to([elements[0].current, elements[1].current], {
             opacity: 0.75,
             color: color
@@ -162,20 +174,46 @@ const Navigation = props => {
         <div className={styles.MainToolbar} ref={nav}>
             <div className={styles.NavHolder}>
                 <div className={styles.logo}>
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                style={{ isolation: "isolate" }}
-                width="40px"
-                height="40px"
-                viewBox="90.021 142.483 319.957 215.034"
-                >
-                <path
-                    fill="#9BABBF"
-                    ref={logoSVG}
-                    fillRule="evenodd"
-                    d="M112.188 279a159.11 159.11 0 0014.838 21H182c4.415 0 8 3.585 8 8v4c0 4.415-3.585 8-8 8h-35.053c50.104 42.216 119.821 48.69 175.91 20H268c-4.415 0-8-3.585-8-8v-4c0-4.415 3.585-8 8-8h84.938a161.622 161.622 0 0017.336-17H246.319c-5.143 0-9.319-4.176-9.319-9.319v-1.362c0-5.143 4.176-9.319 9.319-9.319h138.919c16.559-26.179 24.754-56.081 24.638-85.934.08-.768.113-1.538.1-2.312-.53-30.35-72.643-53.74-160.936-52.199-88.293 1.541-159.545 27.434-159.016 57.784l.001.008c.335 19.994 4.397 39.922 12.164 58.653h50.102a7.712 7.712 0 017.709 7.709v4.582a7.712 7.712 0 01-7.709 7.709h-40.103zm-2.211-81.525c-.337-19.314 62.112-36.09 139.368-37.438 77.257-1.349 140.253 13.237 140.59 32.551.337 19.314-62.112 36.09-139.368 37.438-77.256 1.349-140.252-13.237-140.59-32.551z"
-                ></path>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.16 256.15" width="40px"
+                height="40px">
+      <defs>
+        <linearGradient
+          id="A"
+          x1="200.89"
+          x2="3.14"
+          y1="204.01"
+          y2="182.15"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#65768C" ref={nav1}></stop>
+          <stop offset="1" stopColor="#5a6a7e" ref={nav2}></stop>
+        </linearGradient>
+        <linearGradient
+          id="B"
+          x1="240.62"
+          x2="136.88"
+          y1="149.81"
+          y2="73.98"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="#65768C" ref={nav3}></stop>
+          <stop offset="1" stopColor="#5a6a7e" ref={nav4}></stop>
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#A)"
+        d="M225.54 215.19A130.57 130.57 0 010 125.57l.08-4.47a219 219 0 00164.49 74.16 221.27 221.27 0 0023.29-1.26 218.55 218.55 0 0037.68 21.19z"
+      ></path>
+      <path
+      ref={nav5}
+        fill="#5a6a7e"
+        d="M187.86 194a221.27 221.27 0 01-23.29 1.23A219 219 0 01.08 121.1v-.75a218.5 218.5 0 00130.48 43q10.2 0 20.15-.92l1-.08.84.9A220.15 220.15 0 00187.86 194z"
+      ></path>
+      <path
+        fill="url(#B)"
+        d="M261.16 125.57a130 130 0 01-10.91 52.33l-2.11 4.55a129.82 129.82 0 01-22.6 32.74A218.55 218.55 0 01187.86 194a220.15 220.15 0 01-35.33-30.8l-.84-.9A218.67 218.67 0 0194 14q0-7 .44-14h.17a130.6 130.6 0 00120.17 79.36 130.37 130.37 0 0029-3.24q3.49-.8 6.93-1.77a129.87 129.87 0 0110.33 46l.12 5.22z"
+      ></path>
+    </svg>
                     <h1>wareshop.</h1>
                 </div>
 

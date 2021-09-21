@@ -10,24 +10,88 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 2rem;
 
-    .Cancel {
-        width: 5rem;
-        height: 5rem;
+    .Buttons {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-weight: bold;
-        font-size: 2rem;
-        cursor: pointer;
+        flex-direction: column;
+
+        .NEW {
+            margin: 0.5rem 1rem;
+            font-weight: bold;
+            border: 2px solid $main;
+            border-radius: 25px;
+            width: 6rem;
+            padding: 0.5rem 0.5rem;
+            font-size: 1rem;
+            background: $main;
+            color: $second;
+        }
+
+        .NEW2 {
+            margin: 0.5rem 1rem;
+            font-weight: bold;
+            border: none;
+            width: 6rem;
+            padding: 0.5rem 0.5rem;
+            font-size: 1rem;
+            background: transparent;
+            color: $main;
+        }
     }
 
-    // .Random {
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     flex-direction: column;
-    //     height: 100vh;
+
+    .Information {
+        min-height: 50vh;
+
+        .header {
+            margin: 1rem 1rem;
+        }
+
+        form {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            padding-bottom: 2rem;
+
+            input {
+                text-align: center;
+                padding: 1rem;
+                width: 70%;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid $main;
+                color: $main;
+                margin-bottom: 2rem;
+
+                &::placeholder {
+                    color: $main;
+                    opacity: .8;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+    }
+
+
+    .Progress {
+        height: 5rem;
+    }
+
+    svg {
+        width: 90%;
+    }
+
 
         div {
             display: flex;
@@ -36,59 +100,10 @@
             flex-direction: column;
             width: 100%;
             padding: 2rem;
+
             h1 {
                 padding: 1rem;
                 margin: 0;
             }
         }
-
-        .Holder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            padding: 1rem;
-            max-width: 25rem;
-
-            .Buttons {
-                padding: 0;
-                font-size: 2rem;
-                font-weight: bold;
-            }
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            opacity: .9;
-
-            input{
-                width: 100%;
-                max-width: 40rem;
-                color: $main;
-                border: none;
-                background-color: transparent;
-                border-bottom: 1px solid $main;
-                margin-bottom: 1rem;
-                padding: 1rem;
-                text-align: center;
-            }
-            input::placeholder {
-                color: darken($main, 10%);
-            }
-            select {
-                background-color: $second;
-                border: none;
-                padding: 1rem;
-                text-align-last: center;
-                text-align: center;
-                width: 100%;
-                max-width: 40rem;
-                color: darken($main, 10%);
-            }
-        }
-    // }
 }

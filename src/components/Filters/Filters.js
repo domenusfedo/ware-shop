@@ -116,7 +116,7 @@ const Filters = props => {
                                         to: null
                                     },
                                     sorting: 'asc'
-                                }); props.toggleFilters()}}>clear all</button>
+                                }); props.toggleFilters()}}>x</button>
                         </div>
                     </div>}
             </div>
